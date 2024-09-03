@@ -1,0 +1,1 @@
+# vinxi-vanilla-js-skeleton
