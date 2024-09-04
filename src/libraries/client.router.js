@@ -20,6 +20,8 @@ export const handleRoute = async () => {
       ? await layoutComponent.component.build()
       : await import(/* @vite-ignore */ layoutComponent.component.src);
     await loadModule(layoutComponent, layoutModule);
+  } else {
+    document.getElementById("app").innerHTML = "";
   }
 
   const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
@@ -66,7 +68,7 @@ const loadModule = async (component, module) => {
   if (component.type === "404") {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
-    if (module.MetaTitle) document.title = await module.MetaTitle;
+    if (module.MetaTitle) document.title = module.MetaTitle;
     if ((module.default() ?? "").length > 0) {
       appElement.innerHTML = await module.default();
       addLinkListener(appElement);
@@ -90,7 +92,7 @@ const loadModule = async (component, module) => {
 
   if (component.hash === appElement?.getAttribute("data-hash") || component.hash === pageElement?.getAttribute("data-hash")) return;
 
-  if (module.MetaTitle) document.title = await module.MetaTitle;
+  if (module.MetaTitle) document.title = module.MetaTitle;
   if ((module.default() ?? "").length > 0) {
     if (pageElement) {
       pageElement.innerHTML = await module.default();

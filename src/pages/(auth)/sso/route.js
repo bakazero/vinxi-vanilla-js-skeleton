@@ -1,5 +1,7 @@
+import html from "./route.html?raw";
+
 export default function Page() {
-  return "";
+  return html;
 }
 
 export const Script = () => {
