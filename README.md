@@ -5,7 +5,7 @@
 
 ## Development
 
-Copy `.env` file from `/deploy/overlays/dev` to the `root project`
+<!-- Copy `.env` file from `/deploy/overlays/dev` to the `root project` -->
 
 Install dependencies:
 
