@@ -1,3 +1,10 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
 export const simpleHash = (str) => {
   let hash = 0;
   if (str.length === 0) return hash;

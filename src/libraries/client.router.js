@@ -28,6 +28,9 @@ export const handleRoute = async () => {
   await loadModule(routeComponent, routeModule);
 };
 
+/**
+ * @param {Event} event
+ */
 export const route = (event) => {
   event.preventDefault();
   window.history.pushState({}, "", event.target.href);
@@ -54,6 +57,9 @@ const findRoute = (path) => {
   return routes.filter((route) => !route.uri.includes("/layout")).find((route) => (route.uri || "/") === path);
 };
 
+/**
+ * @param {HTMLElement} element
+ */
 const addLinkListener = (element) => {
   for (const link of element.getElementsByClassName("spa")) {
     link.removeEventListener("click", route);
