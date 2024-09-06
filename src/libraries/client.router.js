@@ -8,7 +8,6 @@ export const handleRoute = async () => {
 
   if (!routeComponent) {
     const p404Component = routes.find((route) => route.uri === "/404");
-    p404Component.type = "404";
     const p404Module = p404Component.component.build ? await p404Component.component.build() : await import(/* @vite-ignore */ p404Component.component.src);
     await loadModule(p404Component, p404Module);
     return;
@@ -34,7 +33,8 @@ export const handleRoute = async () => {
  */
 export const route = (event) => {
   event.preventDefault();
-  window.history.pushState({}, "", event.target.href);
+  const target = /** @type {HTMLAnchorElement} */ (event.target);
+  window.history.pushState({}, "", target.href);
   handleRoute();
 };
 
@@ -42,6 +42,9 @@ const routes = fileRoutes.map((route) => ({
   path: route.path,
   type: route.path.includes("/layout") ? "layout" : "route",
   hash: simpleHash(route.path),
+  /**
+   * @type {{ src: string; import: () => Promise<any>; require?: () => any; build?: () => Promise<any> }}
+   */
   component: route.$component,
   uri: route.path
     .replace(/\(.*?\)\//g, "")
