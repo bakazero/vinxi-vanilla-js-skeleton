@@ -2,6 +2,14 @@
 
 - [Vinxi](https://vinxi.vercel.app)
 - [Tailwind](https://tailwindcss.com)
+- [lit-html](https://lit.dev/docs/libraries/standalone-templates)
+
+# VS Code Plugin
+
+- lit-html
+- lit-it
+- Prettier - Code formatter
+- Tailwind CSS Intellisense
 
 ## Development
 

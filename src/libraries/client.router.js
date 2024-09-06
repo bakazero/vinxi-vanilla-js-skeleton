@@ -1,5 +1,6 @@
 import fileRoutes from "vinxi/routes";
 import { simpleHash } from "./utilities";
+import { render } from "lit-html";
 
 export const handleRoute = async () => {
   const path = window.location.pathname;
@@ -74,9 +75,9 @@ const loadModule = async (component, module) => {
   if (component.type === "404") {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
-    if (module.MetaTitle) document.title = module.MetaTitle;
-    if ((module.default() ?? "").length > 0) {
-      appElement.innerHTML = await module.default();
+    document.title = (await module.MetaTitle) ?? "";
+    if (module.default) {
+      render(module.default(), appElement);
       addLinkListener(appElement);
     }
     if (module.Script) await module.Script();
@@ -87,8 +88,8 @@ const loadModule = async (component, module) => {
   if (component.type === "layout") {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
-    if ((module.default() ?? "").length > 0) {
-      appElement.innerHTML = await module.default();
+    if (module.default) {
+      render(module.default(), appElement);
       addLinkListener(appElement);
     }
     if (module.Script) await module.Script();
@@ -98,14 +99,14 @@ const loadModule = async (component, module) => {
 
   if (component.hash === appElement?.getAttribute("data-hash") || component.hash === pageElement?.getAttribute("data-hash")) return;
 
-  if (module.MetaTitle) document.title = module.MetaTitle;
-  if ((module.default() ?? "").length > 0) {
+  document.title = (await module.MetaTitle) ?? "";
+  if (module.default) {
     if (pageElement) {
-      pageElement.innerHTML = await module.default();
+      render(module.default(), pageElement);
       addLinkListener(pageElement);
       pageElement.setAttribute("data-hash", component.hash);
     } else {
-      appElement.innerHTML = await module.default();
+      render(module.default(), appElement);
       addLinkListener(appElement);
       appElement.setAttribute("data-hash", component.hash);
     }

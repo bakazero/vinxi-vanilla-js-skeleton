@@ -1,9 +1,12 @@
-import html from "./route.html?raw";
+import { html } from "lit-html";
 
 export const MetaTitle = "User";
 
 export default function Page() {
-  return html;
+  return html`
+    <h1>User</h1>
+    <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
+  `;
 }
 
 export const Script = () => {

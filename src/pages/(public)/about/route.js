@@ -1,9 +1,14 @@
-import html from "./route.html?raw";
+import { html } from "lit-html";
 
 export const MetaTitle = "About";
 
 export default function Page() {
-  return html;
+  const about = "About";
+  return html`
+    <div>
+      <h1 class="text-lg font-bold">${about}</h1>
+    </div>
+  `;
 }
 
 export const Script = () => {

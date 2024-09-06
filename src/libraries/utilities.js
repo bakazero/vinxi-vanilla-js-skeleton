@@ -5,6 +5,10 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+export const timeout = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
 export const simpleHash = (str) => {
   let hash = 0;
   if (str.length === 0) return hash;
