@@ -5,7 +5,12 @@ import "./assets/style.css";
 import "./assets/nprogress.css";
 import "./assets/notify.css";
 
-nProgress.configure({ showSpinner: false });
+nProgress.configure({
+  showSpinner: false,
+  speed: 250,
+  trickle: true,
+  trickleSpeed: 500,
+});
 
 /** @ts-ignore */
 window.route = route;

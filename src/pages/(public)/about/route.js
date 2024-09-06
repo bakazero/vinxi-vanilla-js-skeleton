@@ -6,7 +6,7 @@ export const MetaTitle = "About";
 
 export default async function Page() {
   const about = "About";
-  const hworld = await world(); // ngambil data dari api
+  const hworld = await world();
   await timeout(1000);
   console.log(hworld);
 

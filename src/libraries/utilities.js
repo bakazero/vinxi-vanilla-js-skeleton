@@ -22,7 +22,7 @@ export const simpleHash = (str) => {
 };
 
 export const notyf = new Notyf({
-  duration: 100000,
+  duration: 3000,
   position: {
     x: "right",
     y: "bottom",
