@@ -1,4 +1,5 @@
 import { clsx } from "clsx";
+import { Notyf } from "notyf";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs) {
@@ -11,7 +12,7 @@ export const timeout = (ms) => {
 
 export const simpleHash = (str) => {
   let hash = 0;
-  if (str.length === 0) return hash;
+  if (str.length === 0) return hash.toString();
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
     hash = (hash << 5) - hash + char;
@@ -19,3 +20,12 @@ export const simpleHash = (str) => {
   }
   return Math.abs(hash).toString(16);
 };
+
+export const notyf = new Notyf({
+  duration: 3000,
+  position: {
+    x: "right",
+    y: "bottom",
+  },
+  ripple: false,
+});

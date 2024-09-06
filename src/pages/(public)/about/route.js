@@ -1,9 +1,15 @@
+import { world } from "@/libraries/server.function";
+import { timeout } from "@/libraries/utilities";
 import { html } from "lit-html";
 
 export const MetaTitle = "About";
 
-export default function Page() {
+export default async function Page() {
+  throw new Error("Server runtime error.");
   const about = "About";
+  const hworld = await world(); // ngambil data dari api
+  await timeout(1000);
+  console.log(hworld);
 
   return html`
     <div>

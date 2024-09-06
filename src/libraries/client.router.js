@@ -1,31 +1,38 @@
 import fileRoutes from "vinxi/routes";
-import { simpleHash } from "./utilities";
+import { notyf, simpleHash } from "./utilities";
 import { render } from "lit-html";
+import nprogress from "nprogress";
 
 export const handleRoute = async () => {
   const path = window.location.pathname;
   const routeComponent = findRoute(path);
 
-  if (!routeComponent) {
-    const p404Component = routes.find((route) => route.uri === "/404");
-    const p404Module = p404Component.component.build ? await p404Component.component.build() : await import(/* @vite-ignore */ p404Component.component.src);
-    await loadModule(p404Component, p404Module);
-    return;
+  try {
+    if (!routeComponent) {
+      const p404Component = routes.find((route) => route.uri === "/404");
+      const p404Module = p404Component.component.build ? await p404Component.component.build() : await import(/* @vite-ignore */ p404Component.component.src);
+      await loadModule(p404Component, p404Module);
+      return;
+    }
+
+    const layoutComponent = findLayout(routeComponent.path);
+
+    if (layoutComponent) {
+      const layoutModule = layoutComponent.component.build
+        ? await layoutComponent.component.build()
+        : await import(/* @vite-ignore */ layoutComponent.component.src);
+      await loadModule(layoutComponent, layoutModule);
+    } else {
+      document.getElementById("app").innerHTML = "";
+    }
+
+    const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
+    await loadModule(routeComponent, routeModule);
+  } catch (error) {
+    notyf.error(error.message);
+    console.error(error);
+    nprogress.done();
   }
-
-  const layoutComponent = findLayout(routeComponent.path);
-
-  if (layoutComponent) {
-    const layoutModule = layoutComponent.component.build
-      ? await layoutComponent.component.build()
-      : await import(/* @vite-ignore */ layoutComponent.component.src);
-    await loadModule(layoutComponent, layoutModule);
-  } else {
-    document.getElementById("app").innerHTML = "";
-  }
-
-  const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
-  await loadModule(routeComponent, routeModule);
 };
 
 /**
@@ -80,8 +87,10 @@ const loadModule = async (component, module) => {
     if (component.hash === hash) return;
     document.title = (await module.MetaTitle) ?? "";
     if (module.default) {
-      render(module.default(), appElement);
+      nprogress.start();
+      render(await module.default(), appElement);
       addLinkListener(appElement);
+      nprogress.done();
     }
     if (module.Script) await module.Script();
     appElement.setAttribute("data-hash", component.hash);
@@ -92,7 +101,7 @@ const loadModule = async (component, module) => {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
     if (module.default) {
-      render(module.default(), appElement);
+      render(await module.default(), appElement);
       addLinkListener(appElement);
     }
     if (module.Script) await module.Script();
@@ -104,15 +113,17 @@ const loadModule = async (component, module) => {
 
   document.title = (await module.MetaTitle) ?? "";
   if (module.default) {
+    nprogress.start();
     if (pageElement) {
-      render(module.default(), pageElement);
+      render(await module.default(), pageElement);
       addLinkListener(pageElement);
       pageElement.setAttribute("data-hash", component.hash);
     } else {
-      render(module.default(), appElement);
+      render(await module.default(), appElement);
       addLinkListener(appElement);
       appElement.setAttribute("data-hash", component.hash);
     }
+    nprogress.done();
   }
   if (module.Script) await module.Script();
 };
