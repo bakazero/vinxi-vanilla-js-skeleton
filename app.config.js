@@ -1,6 +1,7 @@
 import { serverFunctions } from "@vinxi/server-functions/plugin";
 import { createApp, resolve } from "vinxi";
 import { analyzeModule, BaseFileSystemRouter, cleanPath } from "vinxi/fs-router";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 class FileRouter extends BaseFileSystemRouter {
   // ref: https://docs.solidjs.com/solid-router
@@ -47,7 +48,7 @@ export default createApp({
       name: "client",
       type: "spa",
       handler: "./index.html",
-      plugins: () => [serverFunctions.client()],
+      plugins: () => [serverFunctions.client(), tsconfigPaths()],
       routes: (router, app) => {
         return new FileRouter(
           {

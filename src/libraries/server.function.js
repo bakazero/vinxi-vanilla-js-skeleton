@@ -1,4 +1,4 @@
 export async function world() {
-    "use server";
-    console.log("hello");
+  "use server";
+  return "hello world";
 }
