@@ -21,7 +21,7 @@ export const simpleHash = (str) => {
   return Math.abs(hash).toString(16);
 };
 
-export const notyf = new Notyf({
+export const toast = new Notyf({
   duration: 3000,
   position: {
     x: "right",

@@ -1,5 +1,5 @@
 import { world } from "@/libraries/server.function";
-import { timeout } from "@/libraries/utilities";
+import { timeout, toast } from "@/libraries/utilities";
 import { html } from "lit-html";
 
 export const MetaTitle = "Dashboard";
@@ -13,6 +13,7 @@ export default function Page() {
 }
 
 export const Script = async () => {
+  toast.success("ini script page Dashboard");
   const hworld = await world();
   await timeout(1000);
   console.log(hworld);

@@ -1,5 +1,5 @@
 import fileRoutes from "vinxi/routes";
-import { notyf, simpleHash } from "./utilities";
+import { toast, simpleHash } from "./utilities";
 import { render } from "lit-html";
 import nprogress from "nprogress";
 
@@ -29,7 +29,7 @@ export const handleRoute = async () => {
     const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
     await loadModule(routeComponent, routeModule);
   } catch (error) {
-    notyf.error(error.message);
+    toast.error(error.message);
     console.error(error);
     nprogress.done();
   }
