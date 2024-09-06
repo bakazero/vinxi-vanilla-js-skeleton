@@ -60,5 +60,6 @@ export default createApp({
         );
       },
     },
+    serverFunctions.router(),
   ],
 });
