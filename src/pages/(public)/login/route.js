@@ -1,8 +1,13 @@
 import { html } from "lit-html";
+import { redirect } from "@/libraries/client.router";
+import { setAuth } from "@/libraries/server.function";
+import { $auth } from "@/stores/auth";
+import { timeout } from "@/libraries/utilities";
+import nProgress from "nprogress";
 import "@/components/form/fo-input";
 import "@/components/form/fo-label";
 import "@/components/form/fo-error";
-import { redirect } from "@/libraries/client.router";
+import "@/components/ui/ui-button";
 
 export const MetaTitle = "Login";
 
@@ -13,16 +18,16 @@ export default async function Page() {
       <form id="login-form" class="my-4 space-y-4">
         <div>
           <fo-label for="username" label="Username"></fo-label>
-          <fo-input name="username" value="admin_hsse@pertamina.com"></fo-input>
+          <fo-input name="username"></fo-input>
           <fo-error name="username"></fo-error>
         </div>
         <div>
           <fo-label for="password" label="Password"></fo-label>
-          <fo-input name="password" type="password" value="admin"></fo-input>
+          <fo-input name="password" type="password"></fo-input>
           <fo-error name="password"></fo-error>
         </div>
         <div>
-          <button type="submit">Login</button>
+          <ui-button type="submit">Login</ui-button>
         </div>
       </form>
     </div>
@@ -32,12 +37,20 @@ export default async function Page() {
 export const Script = async () => {
   const form = document.getElementById("login-form");
   if (form instanceof HTMLFormElement) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      const formData = new FormData(form);
 
-      const data = new FormData(form);
+      if (!formValidation(form, formData)) return;
 
-      if (!formValidation(form, data)) return;
+      nProgress.start();
+      form.querySelectorAll("[name]").forEach((element) => element.setAttribute("disabled", ""));
+      form.querySelectorAll("button").forEach((element) => element.setAttribute("disabled", ""));
+
+      await timeout(3000);
+      const token = "mhwahahahaha";
+      await setAuth(token);
+      $auth.set({ token });
 
       return redirect("/dashboard");
     });

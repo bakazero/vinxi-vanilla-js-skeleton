@@ -117,6 +117,7 @@ const loadModule = async (component, module) => {
     }
     if (module.Script) await module.Script();
     appElement.setAttribute("data-hash", component.hash);
+    return;
   }
 
   if (component.hash === appElement?.getAttribute("data-hash") || component.hash === pageElement?.getAttribute("data-hash")) return;

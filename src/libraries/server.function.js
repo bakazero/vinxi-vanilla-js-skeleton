@@ -13,6 +13,9 @@ export async function getAuth() {
   return { token };
 }
 
+/**
+ * @param {string} token
+ */
 export async function setAuth(token) {
   setCookie("auth", token, { secure: true, maxAge: 60 * 60 * 24 * 30 });
   return {};

@@ -1,14 +1,16 @@
 import nProgress from "nprogress";
 import { route, handleRoute } from "./libraries/client.router";
-import { getSetting } from "./libraries/server.function";
+import { getAuth, getSetting } from "./libraries/server.function";
 import { $setting } from "./stores/setting";
+import { $auth } from "./stores/auth";
 
 import "./assets/style.css";
 import "./assets/nprogress.css";
 import "./assets/notify.css";
 
-const setting = await getSetting();
+const [setting, auth] = await Promise.all([getSetting(), getAuth()]);
 $setting.set(setting);
+$auth.set(auth);
 
 nProgress.configure({
   showSpinner: false,
