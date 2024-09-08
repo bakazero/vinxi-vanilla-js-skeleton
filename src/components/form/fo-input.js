@@ -49,8 +49,6 @@ class FormInput extends HTMLElement {
           name=${ifDefined(this.getAttribute("name"))}
           value=${ifDefined(this.getAttribute("value"))}
           .type=${this.getAttribute("type") ?? "text"}
-          .disabled=${this.hasAttribute("disabled")}
-          .error=${this.hasAttribute("error")}
           placeholder=${ifDefined(this.getAttribute("placeholder"))}
           class=${cn(
             "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5",

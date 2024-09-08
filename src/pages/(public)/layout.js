@@ -2,7 +2,7 @@ import { html } from "lit-html";
 
 export default async function Layout() {
   return html`
-    <div class="space-y-4">
+    <div class="space-y-4 m-4">
       <header>
         <h1>Header</h1>
         <nav>

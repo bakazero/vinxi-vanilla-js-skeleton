@@ -4,10 +4,10 @@ import { setAuth } from "@/libraries/server.function";
 import { $auth } from "@/stores/auth";
 import { timeout } from "@/libraries/utilities";
 import nProgress from "nprogress";
+import "@/components/ui/ui-button";
 import "@/components/form/fo-input";
 import "@/components/form/fo-label";
 import "@/components/form/fo-error";
-import "@/components/ui/ui-button";
 
 export const MetaTitle = "Login";
 
@@ -44,10 +44,9 @@ export const Script = async () => {
       if (!formValidation(form, formData)) return;
 
       nProgress.start();
-      form.querySelectorAll("[name]").forEach((element) => element.setAttribute("disabled", ""));
-      form.querySelectorAll("button").forEach((element) => element.setAttribute("disabled", ""));
+      form.querySelectorAll("fo-input,ui-button").forEach((element) => element.setAttribute("disabled", ""));
 
-      await timeout(3000);
+      await timeout(2000);
       const token = "mhwahahahaha";
       await setAuth(token);
       $auth.set({ token });
