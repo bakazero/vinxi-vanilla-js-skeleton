@@ -1,6 +1,6 @@
 import { clsx } from "clsx";
-import { Notyf } from "notyf";
 import { twMerge } from "tailwind-merge";
+import { Notyf } from "notyf";
 
 export function cn(...inputs) {
   return twMerge(clsx(inputs));

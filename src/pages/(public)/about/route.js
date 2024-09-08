@@ -12,7 +12,6 @@ export default async function Page() {
 
   return html`
     <div>
-      <mui-component></mui-component>
       <h1 class="text-lg font-bold">${about}</h1>
       <button @click=${() => bla(about, "dua")}>change</button>
     </div>
