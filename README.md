@@ -4,11 +4,20 @@
 - [Tailwind](https://tailwindcss.com)
 - [lit-html](https://lit.dev/docs/libraries/standalone-templates)
 
-# VS Code Plugin
+### VS Code
 
+##### Plugin
+
+- Prettier - Code formatter
 - Tailwind CSS Intellisense
 - lit-plugin
-- Prettier - Code formatter
+
+##### Setting (JSON)
+
+```json
+"tailwindCSS.experimental.classRegex":
+    [["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*?)[\"'`]"]]
+```
 
 ## Development
 
@@ -41,6 +50,8 @@ Then run the app in production mode:
 
 ```sh
 npm start
+#or
+node .output/server/index.mjs
 ```
 
 Now you'll need to pick a host to deploy it to.

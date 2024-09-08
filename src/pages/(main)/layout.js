@@ -1,6 +1,13 @@
+import { redirect } from "@/libraries/client.router";
+import { $auth } from "@/stores/auth";
 import { html } from "lit-html";
 
 export default async function Layout() {
+  const auth = $auth.get();
+  if (!auth?.token) {
+    return redirect("/");
+  }
+
   return html`
     <div class="space-y-4">
       <header>

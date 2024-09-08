@@ -1,5 +1,5 @@
-import { world } from "@/libraries/server.function";
 import { toast } from "@/libraries/utilities";
+import { $setting } from "@/stores/setting";
 import { html } from "lit-html";
 
 export const MetaTitle = "Dashboard";
@@ -7,14 +7,13 @@ export const MetaTitle = "Dashboard";
 export default async function Page() {
   return html`
     <div>
-      <h1 class="text-lg font-bold">Dashboard</h1>
+      <h1 class="text-lg font-bold">${MetaTitle}</h1>
     </div>
   `;
 }
 
 export const Script = async () => {
-  toast.success("ini script page Dashboard");
-  const hworld = await world();
-  console.log(hworld);
-  console.log("ini script page Dashboard");
+  console.log($setting.value);
+  toast.success(`ini script page ${MetaTitle}`);
+  console.log(`ini script page ${MetaTitle}`);
 };

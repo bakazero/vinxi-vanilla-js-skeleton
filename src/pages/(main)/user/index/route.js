@@ -4,7 +4,7 @@ export const MetaTitle = "User";
 
 export default async function Page() {
   return html`
-    <h1>User</h1>
+    <h1>${MetaTitle}</h1>
     <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
   `;
 }
@@ -18,5 +18,5 @@ export const Script = async () => {
     }
   }
 
-  console.log("ini script page User");
+  console.log(`ini script page ${MetaTitle}`);
 };

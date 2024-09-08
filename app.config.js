@@ -38,6 +38,11 @@ class FileRouter extends BaseFileSystemRouter {
 }
 
 export default createApp({
+  server: {
+    experimental: {
+      asyncContext: true,
+    },
+  },
   routers: [
     {
       name: "public",

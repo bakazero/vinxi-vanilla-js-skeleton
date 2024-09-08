@@ -29,6 +29,7 @@ export const handleRoute = async () => {
     const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
     await loadModule(routeComponent, routeModule);
   } catch (error) {
+    if (error === "redirect") return;
     toast.error(error.message);
     console.error(error);
     nprogress.done();
@@ -109,12 +110,13 @@ const loadModule = async (component, module) => {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
     if (module.default) {
-      render(await module.default(), appElement);
+      const template = await module.default();
+      if (!template) throw "redirect";
+      render(template, appElement);
       addLinkListener(appElement);
     }
     if (module.Script) await module.Script();
     appElement.setAttribute("data-hash", component.hash);
-    return;
   }
 
   if (component.hash === appElement?.getAttribute("data-hash") || component.hash === pageElement?.getAttribute("data-hash")) return;

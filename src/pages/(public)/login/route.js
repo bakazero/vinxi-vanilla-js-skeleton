@@ -9,16 +9,16 @@ export const MetaTitle = "Login";
 export default async function Page() {
   return html`
     <div>
-      <h1 class="text-lg font-bold">Login</h1>
+      <h1 class="text-lg font-bold">${MetaTitle}</h1>
       <form id="login-form" class="my-4 space-y-4">
         <div>
           <fo-label for="username" label="Username"></fo-label>
-          <fo-input name="username"></fo-input>
+          <fo-input name="username" value="admin_hsse@pertamina.com"></fo-input>
           <fo-error name="username"></fo-error>
         </div>
         <div>
           <fo-label for="password" label="Password"></fo-label>
-          <fo-input name="password" type="password" value="12345"></fo-input>
+          <fo-input name="password" type="password" value="admin"></fo-input>
           <fo-error name="password"></fo-error>
         </div>
         <div>
@@ -39,9 +39,7 @@ export const Script = async () => {
 
       if (!formValidation(form, data)) return;
 
-      console.log("lolos");
-
-      redirect("/dashboard");
+      return redirect("/dashboard");
     });
   }
 };
@@ -57,12 +55,12 @@ const formValidation = (form, data) => {
   const password = data.get("password");
 
   if (!username) {
-    form.querySelectorAll("[name='username']").forEach((element) => element.setAttribute("error", "Username is required"));
+    form.querySelectorAll("[name='username']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
 
   if (!password) {
-    form.getElementById("password").setAttribute("error", "");
+    form.querySelectorAll("[name='password']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
 
