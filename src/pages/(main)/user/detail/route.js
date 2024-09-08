@@ -2,7 +2,7 @@ import { html } from "lit-html";
 
 export const MetaTitle = "User Detail";
 
-export default function Page() {
+export default async function Page() {
   const id = new URLSearchParams(window.location.search).get("id");
 
   return html`
@@ -12,6 +12,6 @@ export default function Page() {
   `;
 }
 
-export const Script = () => {
+export const Script = async () => {
   console.log("ini script page User Detail");
 };

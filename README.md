@@ -6,10 +6,9 @@
 
 # VS Code Plugin
 
-- lit-html
-- lit-it
-- Prettier - Code formatter
 - Tailwind CSS Intellisense
+- lit-plugin
+- Prettier - Code formatter
 
 ## Development
 

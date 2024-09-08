@@ -5,8 +5,6 @@ import "./assets/style.css";
 import "./assets/nprogress.css";
 import "./assets/notify.css";
 
-import "@/components/form/fo-input";
-
 nProgress.configure({
   showSpinner: false,
   speed: 250,

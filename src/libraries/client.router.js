@@ -45,6 +45,14 @@ export const route = (event) => {
   handleRoute();
 };
 
+/**
+ * @param {string} path
+ */
+export const redirect = (path) => {
+  window.history.pushState({}, "", path);
+  handleRoute();
+};
+
 const routes = fileRoutes.map((route) => ({
   path: route.path,
   type: route.path.includes("/layout") ? "layout" : "route",

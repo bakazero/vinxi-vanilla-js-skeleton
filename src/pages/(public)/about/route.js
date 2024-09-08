@@ -22,6 +22,6 @@ const bla = (satu, dua) => {
   console.log(satu, dua);
 };
 
-export const Script = () => {
+export const Script = async () => {
   console.log("ini script page About");
 };
