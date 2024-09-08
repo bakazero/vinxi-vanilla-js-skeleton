@@ -22,4 +22,4 @@ ENV PORT=3000
 USER app
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["node", ".output/server/index.mjs"]
