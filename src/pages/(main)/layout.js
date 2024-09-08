@@ -15,7 +15,7 @@ export default async function Layout() {
         <nav>
           <a href="/dashboard" class="spa text-blue-600 hover:text-blue-400">Dashboard</a>
           <a href="/user" class="spa text-blue-600 hover:text-blue-400">User</a>
-          <a href="/" class="spa text-blue-600 hover:text-blue-400">Home</a>
+          <a href="/logout" class="spa text-blue-600 hover:text-blue-400">Logout</a>
         </nav>
       </header>
       <div id="app-page"></div>

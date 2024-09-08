@@ -1,6 +1,6 @@
 import fileRoutes from "vinxi/routes";
 import { toast, simpleHash } from "./utilities";
-import { render } from "lit-html";
+import { html, render } from "lit-html";
 import nprogress from "nprogress";
 
 export const handleRoute = async () => {
@@ -23,7 +23,7 @@ export const handleRoute = async () => {
         : await import(/* @vite-ignore */ layoutComponent.component.src);
       await loadModule(layoutComponent, layoutModule);
     } else {
-      document.getElementById("app").innerHTML = "";
+      render(html``, document.getElementById("app-page"));
     }
 
     const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
