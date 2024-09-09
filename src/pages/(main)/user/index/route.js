@@ -7,7 +7,10 @@ export const MetaTitle = "User";
 export default async function Page() {
   return html`
     <h1>${MetaTitle}</h1>
-    <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
+    <div class="flex gap-1 items-center">
+      <iconify-icon icon="mdi:account" height="16"></iconify-icon>
+      <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
+    </div>
 
     <div class="mt-4">
       <ui-button data-micromodal-trigger="dialog-test">Dialog</ui-button>
