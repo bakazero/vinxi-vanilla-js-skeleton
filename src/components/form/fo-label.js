@@ -1,6 +1,6 @@
 import { html, render } from "lit-html";
-import { cn } from "@/libraries/utilities";
 import { ifDefined } from "lit-html/directives/if-defined.js";
+import { cn } from "@/libraries/utilities";
 
 /**
  * @element fo-label

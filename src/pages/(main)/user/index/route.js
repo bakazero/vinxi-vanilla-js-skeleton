@@ -6,6 +6,8 @@ export default async function Page() {
   return html`
     <h1>${MetaTitle}</h1>
     <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
+
+    <div class="mt-4"></div>
   `;
 }
 
