@@ -21,7 +21,10 @@ class FormLabel extends HTMLElement {
   renderTemplate() {
     render(
       html`
-        <label for=${ifDefined(this.getAttribute("for"))} class=${cn("block mb-2 text-sm font-medium text-gray-900", this.getAttribute("class"))}>
+        <label
+          for=${ifDefined(this.getAttribute("for"))}
+          class=${cn("block mb-2 text-sm font-medium text-gray-900 dark:text-white", this.getAttribute("class"))}
+        >
           ${this.getAttribute("label")}
         </label>
       `,
