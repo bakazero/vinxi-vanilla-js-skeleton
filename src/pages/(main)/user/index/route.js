@@ -1,4 +1,6 @@
 import { html } from "lit-html";
+import "@/components/ui/ui-dialog";
+import "@/components/ui/ui-button";
 
 export const MetaTitle = "User";
 
@@ -7,7 +9,12 @@ export default async function Page() {
     <h1>${MetaTitle}</h1>
     <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
 
-    <div class="mt-4"></div>
+    <div class="mt-4">
+      <ui-button data-micromodal-trigger="dialog-test">Dialog</ui-button>
+      <ui-dialog name="dialog-test">
+        <div>Ini Content Modal</div>
+      </ui-dialog>
+    </div>
   `;
 }
 

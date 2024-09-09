@@ -4,6 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": ["vinxi/types/client"],
+    "esModuleInterop": true,
     "checkJs": true,
     "paths": {
       "@/*": ["./src/*"]
