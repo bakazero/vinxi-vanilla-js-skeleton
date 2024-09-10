@@ -65,8 +65,8 @@ export const Script = async () => {
 const formValidation = (form, data) => {
   let error = false;
 
-  // const json = Object.fromEntries(data.entries());
-  // console.log(json);
+  const json = Object.fromEntries(data.entries());
+  console.log(json);
 
   if (!data.get("textInput")) {
     form.querySelectorAll("[name='textInput']").forEach((element) => element.setAttribute("error", "This field is required"));

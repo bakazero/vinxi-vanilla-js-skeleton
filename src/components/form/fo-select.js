@@ -69,7 +69,7 @@ class FormSelect extends HTMLElement {
         <select
           id=${ifDefined(this.getAttribute("name"))}
           name=${ifDefined(this.getAttribute("name"))}
-          data-placeholder=${ifDefined(this.getAttribute("placeholder"))}
+          data-placeholder=${this.getAttribute("placeholder") ?? ""}
         >
           ${unsafeHTML(this.content)}
         </select>
