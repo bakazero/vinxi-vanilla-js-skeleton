@@ -1,4 +1,5 @@
 import { html } from "lit-html";
+import "iconify-icon";
 
 export const MetaTitle = "User";
 

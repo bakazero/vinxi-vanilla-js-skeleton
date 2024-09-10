@@ -8,8 +8,6 @@ import "./assets/style.css";
 import "./assets/nprogress.css";
 import "./assets/notify.css";
 
-import "iconify-icon";
-
 const [setting, auth] = await Promise.all([getSetting(), getAuth()]);
 $setting.set(setting);
 $auth.set(auth);
