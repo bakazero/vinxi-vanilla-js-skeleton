@@ -1,3 +1,4 @@
+import { cn } from "@/libraries/utilities";
 import { html, render } from "lit-html";
 import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 import tippy from "tippy.js/headless";
@@ -22,6 +23,8 @@ class UIPopover extends HTMLElement {
   }
 
   renderTemplate() {
+    const className = this.getAttribute("class");
+
     // @ts-ignore
     tippy(document.querySelector(`[data-popover-trigger=${this.getAttribute("name")}]`), {
       content: this.content,
@@ -33,7 +36,7 @@ class UIPopover extends HTMLElement {
       render(instance) {
         const popper = document.createElement("div");
         const template = html`
-          <div class="popover-content duration-150 border bg-white p-6 shadow-lg rounded-lg">
+          <div class=${cn("popover-content duration-150 border bg-white p-6 shadow-lg rounded-lg", className)}>
             <div>${unsafeHTML(instance.props.content.toString())}</div>
           </div>
         `;

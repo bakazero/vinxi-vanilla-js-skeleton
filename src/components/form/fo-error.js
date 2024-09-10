@@ -11,10 +11,12 @@ import { cn } from "@/libraries/utilities";
 class FormError extends HTMLElement {
   constructor() {
     super();
+    this.component = null;
   }
 
   connectedCallback() {
     this.renderTemplate();
+    this.component = this.querySelector("p");
   }
 
   static get observedAttributes() {
@@ -22,13 +24,15 @@ class FormError extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
+    if (!this.component || oldValue === newValue) return;
     this.renderTemplate();
   }
 
   renderTemplate() {
     render(
-      html` <p class=${cn("text-red-500 text-xs", this.getAttribute("class"), !this.getAttribute("error") && "hidden")}>${this.getAttribute("error")}</p> `,
+      html`
+        <p class=${cn("text-red-500 text-xs mt-1", this.getAttribute("class"), !this.getAttribute("error") && "hidden")}>${this.getAttribute("error")}</p>
+      `,
       this
     );
   }

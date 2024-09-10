@@ -12,12 +12,14 @@ import { cn } from "@/libraries/utilities";
 class UIButton extends HTMLElement {
   constructor() {
     super();
+    this.component = null;
     this.content = this.innerHTML;
     this.innerHTML = "";
   }
 
   connectedCallback() {
     this.renderTemplate();
+    this.component = this.querySelector("button");
   }
 
   static get observedAttributes() {
@@ -25,7 +27,7 @@ class UIButton extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
+    if (!this.component || oldValue === newValue) return;
     this.renderTemplate();
   }
 
