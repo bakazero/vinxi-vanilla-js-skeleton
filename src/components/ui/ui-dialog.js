@@ -41,7 +41,7 @@ class UIDialog extends HTMLElement {
               "group-aria-hidden:animate-out group-aria-hidden:fade-out-0"
             )}
             tabindex="-1"
-            data-micromodal-close
+            data-dialog-close
           ></div>
           <div
             class=${cn(
@@ -65,6 +65,7 @@ class UIDialog extends HTMLElement {
       awaitCloseAnimation: true,
       disableScroll: true,
       openTrigger: "data-dialog-trigger",
+      closeTrigger: "data-dialog-close",
     });
   }
 }
