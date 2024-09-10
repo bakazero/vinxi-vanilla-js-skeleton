@@ -7,7 +7,7 @@ import { cn } from "@/libraries/utilities";
  *
  * @attr {string} [name]
  * @attr {string} [value]
- * @attr {"text" | "password"} [type]
+ * @attr {"text" | "password" | "number"} [type]
  * @attr {boolean} [error]
  * @attr {boolean} [disabled]
  * @attr {string} [placeholder]
@@ -18,10 +18,6 @@ class FormInput extends HTMLElement {
     super();
   }
 
-  static get observedAttributes() {
-    return ["value", "type", "error", "disabled", "placeholder", "class"];
-  }
-
   connectedCallback() {
     this.renderTemplate();
     this.querySelector("input")?.addEventListener("input", this.handleValueChanged);
@@ -29,6 +25,10 @@ class FormInput extends HTMLElement {
 
   disconnectedCallback() {
     this.querySelector("input")?.removeEventListener("input", this.handleValueChanged);
+  }
+
+  static get observedAttributes() {
+    return ["value", "type", "error", "disabled", "placeholder", "class"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

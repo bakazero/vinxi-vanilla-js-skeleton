@@ -14,6 +14,7 @@ export default async function Layout() {
         <h1>Header</h1>
         <nav>
           <a href="/dashboard" class="spa text-blue-600 hover:text-blue-400">Dashboard</a>
+          <a href="/component" class="spa text-blue-600 hover:text-blue-400">Component</a>
           <a href="/user" class="spa text-blue-600 hover:text-blue-400">User</a>
           <a href="/logout" class="spa text-blue-600 hover:text-blue-400">Logout</a>
         </nav>

@@ -16,12 +16,12 @@ class UIButton extends HTMLElement {
     this.innerHTML = "";
   }
 
-  static get observedAttributes() {
-    return ["disabled", "class", "type"];
-  }
-
   connectedCallback() {
     this.renderTemplate();
+  }
+
+  static get observedAttributes() {
+    return ["disabled", "class", "type"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -1,6 +1,6 @@
+import { cn } from "@/libraries/utilities";
 import { html, render } from "lit-html";
 import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
-import { cn } from "@/libraries/utilities";
 import MicroModal from "micromodal";
 
 /**
@@ -16,16 +16,7 @@ class UIDialog extends HTMLElement {
     this.innerHTML = "";
   }
 
-  static get observedAttributes() {
-    return ["class"];
-  }
-
   connectedCallback() {
-    this.renderTemplate();
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
     this.renderTemplate();
   }
 
@@ -66,12 +57,14 @@ class UIDialog extends HTMLElement {
           </div>
         </div>
       `,
-      this
+      document.body
     );
 
     MicroModal.init({
-      disableScroll: false,
+      awaitOpenAnimation: true,
       awaitCloseAnimation: true,
+      disableScroll: true,
+      openTrigger: "data-dialog-trigger",
     });
   }
 }

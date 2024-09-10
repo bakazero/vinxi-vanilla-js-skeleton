@@ -13,12 +13,12 @@ class FormError extends HTMLElement {
     super();
   }
 
-  static get observedAttributes() {
-    return ["error"];
-  }
-
   connectedCallback() {
     this.renderTemplate();
+  }
+
+  static get observedAttributes() {
+    return ["error"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
