@@ -2,6 +2,7 @@ import fileRoutes from "vinxi/routes";
 import { toast, simpleHash } from "./utilities";
 import { html, render } from "lit-html";
 import nprogress from "nprogress";
+import { pathToRegexp } from "path-to-regexp";
 
 export const handleRoute = async () => {
   const path = window.location.pathname;
@@ -144,10 +145,12 @@ const dynamicLoad = async (component) => {
     if (component.build) {
       load = await component.build();
     } else {
-      load = await component.import();
+      const cleanedPath = component.src.replace("file:///", "").replace(/\\/g, "/");
+      const relativePath = cleanedPath.match(/\/src\/.*/)[0];
+      load = await import(/* @vite-ignore */ relativePath);
     }
   } catch (error) {
-    load = await import(/* @vite-ignore */ component.src);
+    load = await component.import();
   }
 
   return load;
