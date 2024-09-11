@@ -10,7 +10,7 @@ export const handleRoute = async () => {
   try {
     if (!routeComponent) {
       const p404Component = routes.find((route) => route.uri === "/404");
-      const p404Module = p404Component.component.build ? await p404Component.component.build() : await import(/* @vite-ignore */ p404Component.component.src);
+      const p404Module = await dynamicLoad(p404Component.component);
       await loadModule(p404Component, p404Module);
       return;
     }
@@ -18,15 +18,13 @@ export const handleRoute = async () => {
     const layoutComponent = findLayout(routeComponent.path);
 
     if (layoutComponent) {
-      const layoutModule = layoutComponent.component.build
-        ? await layoutComponent.component.build()
-        : await import(/* @vite-ignore */ layoutComponent.component.src);
+      const layoutModule = await dynamicLoad(layoutComponent.component);
       await loadModule(layoutComponent, layoutModule);
     } else {
       render(html``, document.getElementById("app-page"));
     }
 
-    const routeModule = routeComponent.component.build ? await routeComponent.component.build() : await import(/* @vite-ignore */ routeComponent.component.src);
+    const routeModule = await dynamicLoad(routeComponent.component);
     await loadModule(routeComponent, routeModule);
   } catch (error) {
     if (error === "redirect") return;
@@ -137,4 +135,20 @@ const loadModule = async (component, module) => {
     nprogress.done();
   }
   if (module.Script) await module.Script();
+};
+
+const dynamicLoad = async (component) => {
+  let load;
+
+  try {
+    if (component.build) {
+      load = await component.build();
+    } else {
+      load = await component.import();
+    }
+  } catch (error) {
+    load = await import(/* @vite-ignore */ component.src);
+  }
+
+  return load;
 };
