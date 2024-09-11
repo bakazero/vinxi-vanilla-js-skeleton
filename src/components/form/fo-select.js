@@ -11,7 +11,6 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
  * @attr {boolean} [searchable]
  * @attr {boolean} [disabled]
  * @attr {string} [placeholder]
- * @attr {string} [class]
  */
 class FormSelect extends HTMLElement {
   constructor() {
