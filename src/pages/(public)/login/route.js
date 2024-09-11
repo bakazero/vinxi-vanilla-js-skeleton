@@ -15,7 +15,7 @@ export default async function Page() {
   return html`
     <div>
       <h1 class="text-lg font-bold">${MetaTitle}</h1>
-      <form id="login-form" class="my-4 space-y-4">
+      <form id="login-form" class="my-4 space-y-4 max-w-xl">
         <div>
           <fo-label for="username" label="Username"></fo-label>
           <fo-input name="username"></fo-input>
