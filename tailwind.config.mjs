@@ -4,6 +4,9 @@ export default {
   content: ["./src/pages/**/*.{html,js}", "./src/components/**/*.{html,js}", "./index.html"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['"Open Sans Variable"', "sans-serif"],
+      },
       height: {
         screen: "100dvh",
       },
