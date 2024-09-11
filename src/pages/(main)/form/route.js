@@ -7,6 +7,7 @@ import "@/components/form/fo-label";
 import "@/components/form/fo-error";
 import "@/components/form/fo-textarea";
 import "@/components/form/fo-file";
+import "@/components/form/fo-upladed";
 
 export const MetaTitle = "Form";
 
@@ -61,6 +62,7 @@ export default async function Page() {
       </div>
       <div class="col-span-2">
         <fo-label label="File Upload"></fo-label>
+        <fo-uploaded fileurl="https://google.com" filename="template-dokument-surat-menyurat.pdf" class="mb-2"></fo-uploaded>
         <fo-file name="fileUpload"></fo-file>
         <fo-error name="fileUpload"></fo-error>
       </div>
