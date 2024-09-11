@@ -78,6 +78,11 @@ const formValidation = (form, data) => {
     error = true;
   }
 
+  if (!data.get("numberInput")) {
+    form.querySelectorAll("[name='numberInput']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true;
+  }
+
   if (!data.get("select") || data.get("select") === "_clear") {
     form.querySelectorAll("[name='select']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
