@@ -1,5 +1,6 @@
 import { html } from "lit-html";
 import "iconify-icon";
+import "@/components/ui/ui-link";
 
 export const MetaTitle = "User";
 
@@ -8,7 +9,7 @@ export default async function Page() {
     <h1 class="text-lg font-bold">${MetaTitle}</h1>
     <div class="flex gap-1 items-center">
       <iconify-icon icon="mdi:account" height="16"></iconify-icon>
-      <a href="/user/detail" class="spa detail text-blue-600 hover:text-blue-400">User Detail</a>
+      <ui-link href="/user/detail" type="spa" class="detail">User Detail</ui-link>
     </div>
   `;
 }

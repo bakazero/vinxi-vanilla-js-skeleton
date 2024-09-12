@@ -1,6 +1,7 @@
 import { redirect } from "@/libraries/client.router";
 import { $auth } from "@/stores/auth";
 import { html } from "lit-html";
+import "@/components/ui/ui-link";
 
 export default async function Layout() {
   const auth = $auth.get();
@@ -13,11 +14,11 @@ export default async function Layout() {
       <header>
         <h1>Header</h1>
         <nav>
-          <a href="/dashboard" class="spa text-blue-600 hover:text-blue-400">Dashboard</a>
-          <a href="/component" class="spa text-blue-600 hover:text-blue-400">Component</a>
-          <a href="/form" class="spa text-blue-600 hover:text-blue-400">Form</a>
-          <a href="/user" class="spa text-blue-600 hover:text-blue-400">User</a>
-          <a href="/logout" class="spa text-blue-600 hover:text-blue-400">Logout</a>
+          <ui-link href="/dashboard" type="spa">Dashboard</ui-link>
+          <ui-link href="/component" type="spa">Component</ui-link>
+          <ui-link href="/form" type="spa">Form</ui-link>
+          <ui-link href="/user" type="spa">User</ui-link>
+          <ui-link href="/logout" type="spa">Logout</ui-link>
         </nav>
       </header>
       <div id="app-page"></div>
