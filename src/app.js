@@ -8,7 +8,7 @@ import "./assets/css/style.css";
 import "./assets/css/nprogress.css";
 import "./assets/css/notify.css";
 import "./assets/css/choices.css";
-import "@/assets/css/filepond.css";
+import "./assets/css/filepond.css";
 
 const [setting, auth] = await Promise.all([getSetting(), getAuth()]);
 $setting.set(setting);
