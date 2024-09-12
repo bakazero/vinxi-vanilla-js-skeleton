@@ -53,9 +53,9 @@ export default async function Page() {
         <fo-error name="select2"></fo-error>
       </div>
       <div class="flex flex-wrap items-center gap-3">
-        <fo-checkbox name="checkbox" label="First Checkbox" disabled></fo-checkbox>
-        <fo-checkbox name="checkbox" label="Second Checkbox" checked></fo-checkbox>
-        <fo-checkbox name="checkbox" label="Third Checkbox"></fo-checkbox>
+        <fo-checkbox name="checkbox1" label="First Checkbox" disabled></fo-checkbox>
+        <fo-checkbox name="checkbox2" label="Second Checkbox" checked></fo-checkbox>
+        <fo-checkbox name="checkbox3" label="Third Checkbox"></fo-checkbox>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <fo-radio name="radio" value="radio1" label="First Radio" disabled></fo-radio>
