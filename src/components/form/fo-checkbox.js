@@ -10,6 +10,7 @@ import "./fo-label";
  * @attr {string} [class]
  * @attr {string} [label]
  * @attr {string} [name]
+ * @attr {string} [value]
  * @attr {boolean} [checked]
  * @ttr {boolean} [disabled]
  */
