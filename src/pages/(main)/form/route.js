@@ -8,6 +8,8 @@ import "@/components/form/fo-error";
 import "@/components/form/fo-textarea";
 import "@/components/form/fo-file";
 import "@/components/form/fo-upladed";
+import "@/components/form/fo-checkbox";
+import "@/components/form/fo-radio";
 
 export const MetaTitle = "Form";
 
@@ -49,6 +51,16 @@ export default async function Page() {
           <option value="option3">Option 3</option>
         </fo-select>
         <fo-error name="select2"></fo-error>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <fo-checkbox name="checkbox" label="First Checkbox" disabled></fo-checkbox>
+        <fo-checkbox name="checkbox" label="Second Checkbox" checked></fo-checkbox>
+        <fo-checkbox name="checkbox" label="Third Checkbox"></fo-checkbox>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <fo-radio name="radio" value="radio1" label="First Radio" disabled></fo-radio>
+        <fo-radio name="radio" value="radio2" label="Second Radio" checked></fo-radio>
+        <fo-radio name="radio" value="radio3" label="Third Radio"></fo-radio>
       </div>
       <div class="col-span-2">
         <fo-label for="textArea" label="Textarea"></fo-label>

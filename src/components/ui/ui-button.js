@@ -23,7 +23,7 @@ class UIButton extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["disabled", "class", "type"];
+    return ["disabled", "type", "class"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
