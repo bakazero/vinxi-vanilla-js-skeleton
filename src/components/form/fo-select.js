@@ -8,6 +8,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
  *
  * @attr {string} [name]
  * @attr {boolean} [error]
+ * @attr {boolean} [clearable]
  * @attr {boolean} [searchable]
  * @attr {boolean} [disabled]
  * @attr {string} [placeholder]
@@ -23,7 +24,6 @@ class FormSelect extends HTMLElement {
 
   connectedCallback() {
     this.renderTemplate();
-    this.component = this.querySelector("select");
     this.component.addEventListener("change", this.handleValueChanged);
   }
 
@@ -44,17 +44,12 @@ class FormSelect extends HTMLElement {
   handleValueChanged() {
     this.parentElement.parentElement.parentElement.removeAttribute("error");
     document.querySelector(`fo-error[name="${this.getAttribute("name")}"]`)?.removeAttribute("error");
-    if (this.hasAttribute("error")) this.parentElement.classList.add("error");
-    else this.parentElement.classList.remove("error");
   }
 
   handleError() {
     const choiceInner = this.querySelector(".choices__inner");
     if (this.hasAttribute("error")) choiceInner.classList.add("error");
-    else {
-      choiceInner.classList.remove("error");
-      this.component?.removeAttribute("error");
-    }
+    else choiceInner.classList.remove("error");
   }
 
   handleDisabled() {
@@ -70,14 +65,14 @@ class FormSelect extends HTMLElement {
           name=${ifDefined(this.getAttribute("name"))}
           data-placeholder=${this.getAttribute("placeholder") ?? ""}
         >
-          ${unsafeHTML(this.content)}
+          ${this.hasAttribute("clearable") ? html` <option value="_clear">Clear</option> ` : null} ${unsafeHTML(this.content)}
         </select>
       `,
       this
     );
 
-    const inputElement = this.querySelector("select");
-    const choices = new Choices(inputElement, {
+    this.component = this.querySelector("select");
+    const choices = new Choices(this.component, {
       searchEnabled: this.hasAttribute("searchable"),
       itemSelectText: "",
     });
@@ -86,7 +81,7 @@ class FormSelect extends HTMLElement {
     this.handleError();
     this.handleDisabled();
 
-    inputElement.addEventListener("choice", function (event) {
+    this.component.addEventListener("choice", function (event) {
       // @ts-ignore
       if (event.detail.value === "_clear") choices.removeActiveItems();
     });

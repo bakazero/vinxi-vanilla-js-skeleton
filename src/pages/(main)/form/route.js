@@ -10,6 +10,7 @@ import "@/components/form/fo-file";
 import "@/components/form/fo-upladed";
 import "@/components/form/fo-checkbox";
 import "@/components/form/fo-radio";
+import "@/components/form/fo-datepicker";
 
 export const MetaTitle = "Form";
 
@@ -35,9 +36,8 @@ export default async function Page() {
       </div>
       <div></div>
       <div>
-        <fo-label for="select" label="Select Clear"></fo-label>
-        <fo-select name="select" placeholder="Choose one...">
-          <option value="_clear">Clear...</option>
+        <fo-label for="select" label="Select Clearable"></fo-label>
+        <fo-select name="select" placeholder="Choose one..." clearable>
           <option value="option1">Option 1</option>
           <option value="option2">Option 2</option>
         </fo-select>
@@ -45,13 +45,19 @@ export default async function Page() {
       </div>
       <div>
         <fo-label for="select2" label="Select Default Value"></fo-label>
-        <fo-select name="select2" placeholder="Choose one...">
+        <fo-select name="select2">
           <option value="option1">Option 1</option>
           <option value="option2" selected>Option 2</option>
           <option value="option3">Option 3</option>
         </fo-select>
         <fo-error name="select2"></fo-error>
       </div>
+      <div>
+        <fo-label for="datepicker" label="Datepicker"></fo-label>
+        <fo-datepicker name="datepicker" placeholder="Choose date..." clearable></fo-datepicker>
+        <fo-error name="datepicker"></fo-error>
+      </div>
+      <div></div>
       <div class="flex flex-wrap items-center gap-3">
         <fo-checkbox name="checkbox1" label="First Checkbox" disabled></fo-checkbox>
         <fo-checkbox name="checkbox2" label="Second Checkbox" checked></fo-checkbox>
@@ -126,6 +132,11 @@ const formValidation = (form, data) => {
 
   if (!data.get("select") || data.get("select") === "_clear") {
     form.querySelectorAll("[name='select']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true;
+  }
+
+  if (!data.get("datepicker")) {
+    form.querySelectorAll("[name='datepicker']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
 

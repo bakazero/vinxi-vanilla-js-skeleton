@@ -48,8 +48,9 @@ class FormTextarea extends HTMLElement {
         <textarea
           id=${ifDefined(this.getAttribute("name"))}
           name=${ifDefined(this.getAttribute("name"))}
-          .value=${this.getAttribute("value")}
           placeholder=${ifDefined(this.getAttribute("placeholder"))}
+          .value=${this.getAttribute("value")}
+          .disabled=${this.hasAttribute("disabled")}
           class=${cn(
             "outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5",
             this.hasAttribute("disabled") && "cursor-not-allowed bg-gray-100",
