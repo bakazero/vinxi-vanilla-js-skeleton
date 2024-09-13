@@ -19,6 +19,15 @@ class FormEditor extends HTMLElement {
     this.renderTemplate();
   }
 
+  static get observedAttributes() {
+    return ["data-editor-content"];
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (!this.component || oldValue === newValue) return;
+    this.editor.isReady.then(() => this.editor.render(JSON.parse(newValue)));
+  }
+
   renderTemplate() {
     render(html`<div id="editorjs" class="bg-gray-50 min-h-[400px] border border-gray-300 text-gray-900 text-sm overflow-hidden rounded p-2.5"></div>`, this);
 
@@ -27,6 +36,8 @@ class FormEditor extends HTMLElement {
       this.editor = new EditorJS({
         holder: this.component,
         minHeight: 0,
+        placeholder: "Let`s write an awesome story!",
+        inlineToolbar: ["convertTo", "bold", "italic"],
         tools: {
           list: {
             // @ts-ignore
