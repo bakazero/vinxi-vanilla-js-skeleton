@@ -49,7 +49,6 @@ class FormRadio extends HTMLElement {
           <div
             class=${cn(
               "h-6 w-6 p-2.5 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-gray-400 focus:border-gray-400",
-              "dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-400 dark:focus:border-gray-400",
               "flex items-center justify-center",
               this.hasAttribute("disabled") && "cursor-not-allowed bg-gray-200",
               this.getAttribute("class")
@@ -59,9 +58,7 @@ class FormRadio extends HTMLElement {
               ? html` <iconify-icon icon="material-symbols:radio-button-unchecked" class="text-blue-400 " height="12"></iconify-icon> `
               : null}
           </div>
-          ${this.hasAttribute("label")
-            ? html`<div class="cursor-default text-sm font-medium text-gray-900 dark:text-white">${this.getAttribute("label")}</div>`
-            : null}
+          ${this.hasAttribute("label") ? html`<div class="cursor-default text-sm font-medium text-gray-900">${this.getAttribute("label")}</div>` : null}
         </div>
       `,
       this

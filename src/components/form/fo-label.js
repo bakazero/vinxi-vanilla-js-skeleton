@@ -21,19 +21,14 @@ class FormLabel extends HTMLElement {
     if (this.hasAttribute("for")) {
       render(
         html`
-          <label for=${this.getAttribute("for")} class=${cn("block mb-1 text-sm font-medium text-gray-900 dark:text-white", this.getAttribute("class"))}>
+          <label for=${this.getAttribute("for")} class=${cn("block mb-1 text-sm font-medium text-gray-900", this.getAttribute("class"))}>
             ${this.getAttribute("label")}
           </label>
         `,
         this
       );
     } else {
-      render(
-        html`
-          <div class=${cn("block mb-1 text-sm font-medium text-gray-900 dark:text-white", this.getAttribute("class"))}>${this.getAttribute("label")}</div>
-        `,
-        this
-      );
+      render(html` <div class=${cn("block mb-1 text-sm font-medium text-gray-900", this.getAttribute("class"))}>${this.getAttribute("label")}</div> `, this);
     }
   }
 }
