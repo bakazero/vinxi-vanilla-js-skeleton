@@ -22,7 +22,7 @@ export default async function Layout() {
         </nav>
       </header>
       <div id="app-page"></div>
-      <footer>Footer</footer>
+      <!-- <footer>Footer</footer> -->
     </div>
   `;
 }

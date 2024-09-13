@@ -2,6 +2,7 @@ import { html } from "lit-html";
 import "@/components/ui/ui-button";
 import "@/components/ui/ui-dialog";
 import "@/components/ui/ui-popover";
+import "@/components/form/fo-editor";
 
 export const MetaTitle = "Component";
 
@@ -22,6 +23,12 @@ export default async function Page() {
           <div>Ini Content Popover</div>
         </ui-popover>
       </div>
+    </div>
+
+    <h2 class="mt-4 mb-1 font-bold">Editor</h2>
+    <fo-editor></fo-editor>
+    <div class="mt-2 flex justify-end">
+      <ui-button data-editor-save>Save</ui-button>
     </div>
   `;
 }

@@ -9,6 +9,8 @@
     "start": "vinxi start"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.30.5",
+    "@editorjs/nested-list": "^1.4.3",
     "@fontsource-variable/open-sans": "^5.0.31",
     "@vinxi/server-functions": "0.4.2",
     "autoprefixer": "^10.4.19",
