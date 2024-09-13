@@ -11,6 +11,7 @@ import "@/components/form/fo-upladed";
 import "@/components/form/fo-checkbox";
 import "@/components/form/fo-radio";
 import "@/components/form/fo-datepicker";
+import "@/components/form/fo-timepicker";
 
 export const MetaTitle = "Form";
 
@@ -57,7 +58,11 @@ export default async function Page() {
         <fo-datepicker name="datepicker" placeholder="Choose date..." clearable></fo-datepicker>
         <fo-error name="datepicker"></fo-error>
       </div>
-      <div></div>
+      <div>
+        <fo-label for="timepicker" label="Timepicker"></fo-label>
+        <fo-timepicker name="timepicker" placeholder="--:--"></fo-timepicker>
+        <fo-error name="timepicker"></fo-error>
+      </div>
       <div class="flex flex-wrap items-center gap-3">
         <fo-checkbox name="checkbox1" label="First Checkbox" disabled></fo-checkbox>
         <fo-checkbox name="checkbox2" label="Second Checkbox" checked></fo-checkbox>
@@ -137,6 +142,11 @@ const formValidation = (form, data) => {
 
   if (!data.get("datepicker")) {
     form.querySelectorAll("[name='datepicker']").forEach((element) => element.setAttribute("error", "This field is required"));
+    error = true;
+  }
+
+  if (!data.get("timepicker")) {
+    form.querySelectorAll("[name='timepicker']").forEach((element) => element.setAttribute("error", "This field is required"));
     error = true;
   }
 

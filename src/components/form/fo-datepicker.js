@@ -85,7 +85,7 @@ class FormDatepicker extends HTMLElement {
               this.getAttribute("class")
             )}
           />
-          <iconify-icon icon="lucide:calendar" class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400"></iconify-icon>
+          <iconify-icon icon="lucide:calendar" class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-600" height="16"></iconify-icon>
         </div>
       `,
       this
@@ -94,7 +94,7 @@ class FormDatepicker extends HTMLElement {
     this.hiddenComponent = this.querySelector("input");
     this.flatpickr = flatpickr(this.hiddenComponent, {
       altInput: true,
-      position: "auto right",
+      position: "auto center",
       altFormat: "j F Y",
       dateFormat: "Y-m-d",
       appendTo: document.querySelector("#app-page"),
