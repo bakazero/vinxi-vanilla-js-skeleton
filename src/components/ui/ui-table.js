@@ -10,7 +10,6 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 class UITable extends HTMLElement {
   constructor() {
     super();
-    console.log(this.innerHTML);
     this.content = this.innerHTML;
     this.innerHTML = "";
   }
