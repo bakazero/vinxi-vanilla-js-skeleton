@@ -19,7 +19,6 @@ class UIButton extends HTMLElement {
 
   connectedCallback() {
     this.renderTemplate();
-    this.component = this.querySelector("button");
   }
 
   static get observedAttributes() {
@@ -47,7 +46,8 @@ class UIButton extends HTMLElement {
       this
     );
 
-    this.querySelector("button").setAttribute("type", this.getAttribute("type") || "button");
+    this.component = this.querySelector("button");
+    this.component.setAttribute("type", this.getAttribute("type") || "button");
   }
 }
 

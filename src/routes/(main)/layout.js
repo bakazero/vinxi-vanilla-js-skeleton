@@ -17,6 +17,7 @@ export default async function Layout() {
           <ui-link href="/dashboard" type="spa">Dashboard</ui-link>
           <ui-link href="/component" type="spa">Component</ui-link>
           <ui-link href="/form" type="spa">Form</ui-link>
+          <ui-link href="/table" type="spa">Table</ui-link>
           <ui-link href="/user" type="spa">User</ui-link>
           <ui-link href="/logout" type="spa">Logout</ui-link>
         </nav>

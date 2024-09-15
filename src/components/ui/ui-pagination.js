@@ -1,11 +1,11 @@
 import { html, render } from "lit-html";
 
 /**
- * @element ta-pagination
+ * @element ui-pagination
  *
  * @attr {string} [class]
  */
-class TablePagination extends HTMLElement {
+class UIPagination extends HTMLElement {
   constructor() {
     super();
   }
@@ -19,4 +19,4 @@ class TablePagination extends HTMLElement {
   }
 }
 
-customElements.define("ta-pagination", TablePagination);
+customElements.define("ui-pagination", UIPagination);
