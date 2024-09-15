@@ -26,130 +26,87 @@ export const removeAuth = async () => {
   return {};
 };
 
-export const dummyPokemon = async () => {
-  return {
-    count: 120,
-    data: [
-      {
-        id: 1,
-        name: "bulbasaur",
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-        url: "https://pokeapi.co/api/v2/pokemon/1",
-        abilities: [
-          {
-            ability: {
-              name: "overgrow",
-              url: "https://pokeapi.co/api/v2/ability/65/",
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: "chlorophyll",
-              url: "https://pokeapi.co/api/v2/ability/34/",
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-      },
-      {
-        id: 4,
-        name: "charmander",
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
-        url: "https://pokeapi.co/api/v2/pokemon/4",
-        abilities: [
-          {
-            ability: {
-              name: "blaze",
-              url: "https://pokeapi.co/api/v2/ability/66/",
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: "solar-power",
-              url: "https://pokeapi.co/api/v2/ability/94/",
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-      },
-      {
-        id: 7,
-        name: "squirtle",
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
-        url: "https://pokeapi.co/api/v2/pokemon/7",
-        abilities: [
-          {
-            ability: {
-              name: "torrent",
-              url: "https://pokeapi.co/api/v2/ability/67/",
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: "rain-dish",
-              url: "https://pokeapi.co/api/v2/ability/44/",
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-      },
-      {
-        id: 10,
-        name: "caterpie",
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
-        url: "https://pokeapi.co/api/v2/pokemon/10",
-        abilities: [
-          {
-            ability: {
-              name: "shield-dust",
-              url: "https://pokeapi.co/api/v2/ability/111/",
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: "run-away",
-              url: "https://pokeapi.co/api/v2/ability/93/",
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-      },
-      {
-        id: 13,
-        name: "weedle",
-        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
-        url: "https://pokeapi.co/api/v2/pokemon/13",
-        abilities: [
-          {
-            ability: {
-              name: "shield-dust",
-              url: "https://pokeapi.co/api/v2/ability/111/",
-            },
-            is_hidden: false,
-            slot: 1,
-          },
-          {
-            ability: {
-              name: "run-away",
-              url: "https://pokeapi.co/api/v2/ability/93/",
-            },
-            is_hidden: true,
-            slot: 3,
-          },
-        ],
-      },
-    ],
-  };
+export const dummyPokemon = async (page = 1) => {
+  if (page === 1)
+    return {
+      count: 10,
+      data: [
+        {
+          id: 1,
+          name: "bulbasaur",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+          url: "https://pokeapi.co/api/v2/pokemon/1",
+          abilities: ["overgrow", "chlorophyll"],
+        },
+        {
+          id: 4,
+          name: "charmander",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+          url: "https://pokeapi.co/api/v2/pokemon/4",
+          abilities: ["blaze", "solar-power"],
+        },
+        {
+          id: 7,
+          name: "squirtle",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+          url: "https://pokeapi.co/api/v2/pokemon/7",
+          abilities: ["torrent", "rain-dish"],
+        },
+        {
+          id: 10,
+          name: "caterpie",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+          url: "https://pokeapi.co/api/v2/pokemon/10",
+          abilities: ["shield-dust", "run-away"],
+        },
+        {
+          id: 13,
+          name: "weedle",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
+          url: "https://pokeapi.co/api/v2/pokemon/13",
+          abilities: ["shield-dust", "run-away"],
+        },
+      ],
+    };
+  else
+    return {
+      count: 10,
+      data: [
+        {
+          id: 2,
+          name: "ivysaur",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+          url: "https://pokeapi.co/api/v2/pokemon/2",
+          abilities: ["overgrow", "chlorophyll"],
+        },
+        {
+          id: 5,
+          name: "charmeleon",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+          url: "https://pokeapi.co/api/v2/pokemon/5",
+          abilities: ["blaze", "solar-power"],
+        },
+        {
+          id: 8,
+          name: "wartortle",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+          url: "https://pokeapi.co/api/v2/pokemon/8",
+          abilities: ["torrent", "rain-dish"],
+        },
+        {
+          id: 11,
+          name: "metapod",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+          url: "https://pokeapi.co/api/v2/pokemon/11",
+          abilities: ["shed-skin", "run-away"],
+        },
+        {
+          id: 14,
+          name: "kakuna",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
+          url: "https://pokeapi.co/api/v2/pokemon/14",
+          abilities: ["shed-skin", "run-away"],
+        },
+      ],
+    };
 };

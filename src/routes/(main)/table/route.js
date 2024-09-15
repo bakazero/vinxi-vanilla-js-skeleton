@@ -27,7 +27,17 @@ export default async function Page() {
             <tbody id="tableData">
               <tr>
                 <td colspan="9999">
-                  <div class="animate-pulse w-full h-4 bg-gray-200 rounded-full"></div>
+                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="9999">
+                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="9999">
+                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
                 </td>
               </tr>
             </tbody>
@@ -41,8 +51,8 @@ export default async function Page() {
 export const Script = async () => {
   const tableData = document.getElementById("tableData");
   if (tableData instanceof HTMLElement) {
-    await timeout(1000);
-    const { data } = await dummyPokemon();
+    await timeout(300);
+    const { data } = await dummyPokemon(1);
 
     tableData.innerHTML = "";
 
@@ -57,7 +67,7 @@ export const Script = async () => {
               </div>
             </td>
             <td class="capitalize">${item.name}</td>
-            <td>${item.abilities.map((ability) => ability.ability.name).join(", ")}</td>
+            <td class="capitalize">${item.abilities.join(", ")}</td>
             <td class="text-center hover:animate-pulse">
               <iconify-icon icon="mdi:pokeball" height="24" class="text-blue-600"></iconify-icon>
             </td>

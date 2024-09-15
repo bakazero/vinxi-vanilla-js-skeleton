@@ -25,10 +25,12 @@ export default async function Page() {
       </div>
     </div>
 
-    <h2 class="mt-4 mb-1 font-bold">Editor</h2>
-    <fo-editor></fo-editor>
-    <div class="mt-2 flex justify-end">
-      <ui-button data-editor-save>Save</ui-button>
+    <div class="mt-4 max-w-5xl">
+      <h2 class="mb-1 font-bold">Editor</h2>
+      <fo-editor></fo-editor>
+      <div class="mt-2 flex justify-end">
+        <ui-button data-editor-save>Save</ui-button>
+      </div>
     </div>
   `;
 }
