@@ -1,9 +1,9 @@
 import { html, render } from "lit-html";
-import "@/components/ui/ui-pagination";
-import "@/components/ui/ui-table";
 import { dummyPokemon } from "@/libraries/server.function";
 import { timeout } from "@/libraries/utilities";
 import "iconify-icon";
+import "@/components/ui/ui-pagination";
+import "@/components/ui/ui-table";
 
 export const MetaTitle = "Table";
 
@@ -24,37 +24,33 @@ export default async function Page() {
                 <th width="1">Pokedex</th>
               </tr>
             </thead>
-            <tbody id="tableData">
-              <tr>
-                <td colspan="9999">
-                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="9999">
-                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
-                </td>
-              </tr>
-              <tr>
-                <td colspan="9999">
-                  <div class="animate-pulse h-9 bg-gray-200 rounded-lg"></div>
-                </td>
-              </tr>
-            </tbody>
+            <tbody id="tableData"></tbody>
           </table>
         </ui-table>
+        <ui-pagination id="paginationData" class="mt-4" data-pagination-count="10" data-pagination-limit="5" data-pagination-page="1"></ui-pagination>
       </div>
     </div>
   `;
 }
 
 export const Script = async () => {
+  getAndRender(1);
+
+  const paginationData = document.getElementById("paginationData");
+
+  paginationData.addEventListener("pagination-page-change", async (event) => {
+    // @ts-ignore
+    const page = event.detail.page;
+    getAndRender(page);
+  });
+};
+
+const getAndRender = async (page) => {
   const tableData = document.getElementById("tableData");
+
   if (tableData instanceof HTMLElement) {
     await timeout(300);
-    const { data } = await dummyPokemon(1);
-
-    tableData.innerHTML = "";
+    const { data } = await dummyPokemon(page);
 
     render(
       data.map(
