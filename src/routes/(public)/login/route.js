@@ -10,6 +10,7 @@ import "@/components/form/fo-label";
 import "@/components/form/fo-error";
 
 export const MetaTitle = "Login";
+export const MetaDescription = "Description of this page";
 
 export default async function Page() {
   return html`

@@ -2,6 +2,7 @@ import { html } from "lit-html";
 import "@/components/ui/ui-link";
 
 export const MetaTitle = "Page Not Found";
+export const MetaDescription = "Description of this page";
 
 export default async function Page() {
   return html`

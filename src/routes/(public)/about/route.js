@@ -1,6 +1,7 @@
 import { html } from "lit-html";
 
 export const MetaTitle = "About";
+export const MetaDescription = "Description of this page";
 
 export default async function Page() {
   return html`

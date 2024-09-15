@@ -2,7 +2,6 @@ import fileRoutes from "vinxi/routes";
 import { toast, simpleHash } from "./utilities";
 import { html, render } from "lit-html";
 import nprogress from "nprogress";
-import { pathToRegexp } from "path-to-regexp";
 
 export const handleRoute = async () => {
   const path = window.location.pathname;
@@ -94,6 +93,7 @@ const loadModule = async (component, module) => {
     const hash = appElement?.getAttribute("data-hash");
     if (component.hash === hash) return;
     document.title = (await module.MetaTitle) ?? "";
+    setMetaDescription((await module.MetaDescription) ?? "");
     if (module.default) {
       nprogress.start();
       render(await module.default(), appElement);
@@ -122,6 +122,7 @@ const loadModule = async (component, module) => {
   if (component.hash === appElement?.getAttribute("data-hash") || component.hash === pageElement?.getAttribute("data-hash")) return;
 
   document.title = (await module.MetaTitle) ?? "";
+  setMetaDescription((await module.MetaDescription) ?? "");
   if (module.default) {
     nprogress.start();
     if (pageElement) {
@@ -136,6 +137,20 @@ const loadModule = async (component, module) => {
     nprogress.done();
   }
   if (module.Script) await module.Script();
+};
+
+const setMetaDescription = (content) => {
+  if (!content) return;
+
+  let metaDescription = document.querySelector('meta[name="description"]');
+
+  if (!metaDescription) {
+    metaDescription = document.createElement("meta");
+    metaDescription.setAttribute("name", "description");
+    document.head.appendChild(metaDescription);
+  }
+
+  metaDescription.setAttribute("content", content);
 };
 
 const dynamicLoad = async (component) => {
