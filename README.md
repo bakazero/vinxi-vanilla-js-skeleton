@@ -10,7 +10,7 @@
 
 - Prettier - Code formatter
 - Tailwind CSS Intellisense
-- lit-html
+- lit-plugin
 
 ##### Setting (JSON)
 
