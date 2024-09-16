@@ -25,16 +25,17 @@ class UIPopover extends HTMLElement {
 
     // @ts-ignore
     tippy(document.querySelector(`[data-popover-trigger=${this.getAttribute("name")}]`), {
+      content: this.content,
       trigger: this.getAttribute("trigger") || "click",
       animation: true,
       interactive: true,
       placement: this.getAttribute("placement") || "auto",
       appendTo: document.body,
-      render() {
+      render(instance) {
         const popper = document.createElement("div");
         const template = html`
           <div class=${cn("popover-content duration-150 border bg-white p-6 shadow-lg rounded-lg", className)}>
-            <div>${this.content}</div>
+            <div>${instance.props.content}</div>
           </div>
         `;
         render(popper, template);
@@ -71,7 +72,6 @@ class UIPopover extends HTMLElement {
           hide();
         }
       }
-
       return {
         onShow() {
           document.addEventListener("keydown", onKeyDown);

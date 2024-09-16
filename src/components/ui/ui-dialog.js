@@ -22,16 +22,8 @@ class UIDialog extends HTMLElement {
     const id = this.getAttribute("name") || Date.now().toString();
 
     render(
-      document.body,
+      this,
       html`
-        <style>
-          .ui-dialog {
-            display: none;
-          }
-          .ui-dialog.is-open {
-            display: block;
-          }
-        </style>
         <div class="group ui-dialog" id=${id} aria-hidden="true">
           <div
             class=${cn(

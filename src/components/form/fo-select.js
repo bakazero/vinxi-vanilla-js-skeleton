@@ -14,6 +14,7 @@ import Choices from "choices.js";
 class FormSelect extends HTMLElement {
   constructor() {
     super();
+    this.content = Array.from(this.childNodes);
     this.component = null;
     this.choices = null;
   }
@@ -58,7 +59,7 @@ class FormSelect extends HTMLElement {
       this,
       html`
         <select id=${this.getAttribute("name")} name=${this.getAttribute("name")} data-placeholder=${this.getAttribute("placeholder") ?? ""}>
-          ${this.hasAttribute("clearable") ? html` <option value="_clear">Clear</option> ` : null} ${Array.from(this.childNodes)}
+          ${this.hasAttribute("clearable") ? html` <option value="_clear">Clear</option> ` : null} ${Array.from(this.content)}
         </select>
       `
     );
