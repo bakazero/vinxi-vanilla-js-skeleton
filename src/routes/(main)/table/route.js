@@ -56,10 +56,15 @@ export const Script = async () => {
 
 const getAndRender = async (page) => {
   const tableData = document.getElementById("tableData");
+  const pagination = document.querySelector("ui-pagination");
 
   if (tableData instanceof HTMLElement) {
+    pagination.setAttribute("disabled", "");
+
     await timeout(300);
     const { data } = await dummyPokemon(page);
+
+    pagination.removeAttribute("disabled");
 
     if (!data || data.length === 0) {
       return render(

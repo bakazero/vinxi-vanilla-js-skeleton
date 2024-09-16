@@ -45,9 +45,9 @@ export const Script = async () => {
       if (!formValidation(form, formData)) return;
 
       nProgress.start();
-      form.querySelectorAll("fo-input,ui-button").forEach((element) => element.setAttribute("disabled", ""));
+      form.querySelectorAll("ui-button").forEach((element) => element.setAttribute("disabled", ""));
 
-      await timeout(500);
+      await timeout(300);
       const token = "mhwahahahaha";
       await setAuth(token);
       $auth.set({ token });
