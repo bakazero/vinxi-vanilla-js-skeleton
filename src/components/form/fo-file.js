@@ -55,10 +55,10 @@ class FormFile extends HTMLElement {
   }
 
   renderTemplate() {
-    render(this, html` <input type="file" accept=${this.getAttribute("accept")} /> `);
+    render(this, html` <input type="file" name=${this.getAttribute("name")} accept=${this.getAttribute("accept")} /> `);
 
     this.filepond = create(this.querySelector("input"), {
-      name: this.getAttribute("name"),
+      storeAsFile: true,
       credits: false,
     });
 
