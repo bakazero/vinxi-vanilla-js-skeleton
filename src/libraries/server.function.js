@@ -68,7 +68,7 @@ export const dummyPokemon = async (page = 1) => {
         },
       ],
     };
-  else
+  else if (page === 2)
     return {
       count: 10,
       data: [
@@ -109,4 +109,44 @@ export const dummyPokemon = async (page = 1) => {
         },
       ],
     };
+  else if (page === 3)
+    return {
+      count: 10,
+      data: [
+        {
+          id: 3,
+          name: "venusaur",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+          url: "https://pokeapi.co/api/v2/pokemon/3",
+          abilities: ["overgrow", "chlorophyll"],
+        },
+        {
+          id: 6,
+          name: "charizard",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
+          url: "https://pokeapi.co/api/v2/pokemon/6",
+          abilities: ["blaze", "solar-power"],
+        },
+        {
+          id: 9,
+          name: "blastoise",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
+          url: "https://pokeapi.co/api/v2/pokemon/9",
+          abilities: ["torrent", "rain-dish"],
+        },
+        {
+          id: 12,
+          name: "butterfree",
+          image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+          url: "https://pokeapi.co/api/v2/pokemon/12",
+          abilities: ["shed-skin", "compound-eyes"],
+        },
+      ],
+    };
+  else {
+    return {
+      count: 10,
+      data: [],
+    };
+  }
 };

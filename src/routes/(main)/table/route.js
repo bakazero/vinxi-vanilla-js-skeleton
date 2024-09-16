@@ -24,10 +24,19 @@ export default async function Page() {
                 <th width="1">Pokedex</th>
               </tr>
             </thead>
-            <tbody id="tableData"></tbody>
+            <tbody id="tableData">
+              ${Array.from({ length: 5 }).map(
+                () =>
+                  html`<tr>
+                    <td colspan="99" class="text-center">
+                      <div class="bg-gray-200 h-12 animate-pulse rounded"></div>
+                    </td>
+                  </tr>`
+              )}
+            </tbody>
           </table>
         </ui-table>
-        <ui-pagination id="paginationData" class="mt-4" data-pagination-count="10" data-pagination-limit="5" data-pagination-page="1"></ui-pagination>
+        <ui-pagination id="paginationData" class="mt-4" data-pagination-count="16" data-pagination-limit="5" data-pagination-page="1"></ui-pagination>
       </div>
     </div>
   `;
@@ -51,6 +60,15 @@ const getAndRender = async (page) => {
   if (tableData instanceof HTMLElement) {
     await timeout(300);
     const { data } = await dummyPokemon(page);
+
+    if (!data || data.length === 0) {
+      return render(
+        tableData,
+        html`<tr>
+          <td colspan="99" class="text-center text-gray-600">No Data</td>
+        </tr>`
+      );
+    }
 
     render(
       tableData,
