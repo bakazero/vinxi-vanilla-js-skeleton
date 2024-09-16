@@ -57,7 +57,7 @@ class FormInput extends HTMLElement {
           max=${this.getAttribute("max")}
           step=${this.getAttribute("step") ? Number(this.getAttribute("step")) : undefined}
           placeholder=${this.getAttribute("placeholder")}
-          type=${this.getAttribute("type") ?? "text"}
+          .type=${this.getAttribute("type") ?? "text"}
           ?disabled=${this.hasAttribute("disabled")}
           class=${cn(
             "outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5",
