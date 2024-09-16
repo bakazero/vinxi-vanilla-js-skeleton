@@ -1,6 +1,7 @@
 import { cn, toMonetary } from "@/libraries/utilities";
 import { html, render } from "uhtml";
 import "iconify-icon";
+import "@/components/ui/ui-button";
 
 /**
  * @element ui-pagination
@@ -97,39 +98,31 @@ class UIPagination extends HTMLElement {
               <div class="flex items-center justify-center whitespace-nowrap">
                 Page ${toMonetary((page ?? 1).toString())} of ${toMonetary((Math.ceil(count / limit) ?? 1).toString())}
               </div>
-              <div class="flex items-center gap-2">
-                <button
-                  size="icon"
-                  class="first-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  ?disabled=${page === 1 || disabled}
-                >
+              <div class="flex items-center gap-4">
+                <ui-button size="icon" class="first-page flex items-center justify-center rounded text-white w-7 h-7 " ?disabled=${page === 1 || disabled}>
                   <span class="sr-only">Go to first page</span>
                   <iconify-icon icon="material-symbols:keyboard-double-arrow-left-rounded" width="20" height="20"></iconify-icon>
-                </button>
-                <button
-                  size="icon"
-                  class="prev-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  ?disabled=${page === 1 || disabled}
-                >
+                </ui-button>
+                <ui-button size="icon" class="prev-page flex items-center justify-center rounded text-white w-7 h-7 " ?disabled=${page === 1 || disabled}>
                   <span class="sr-only">Go to previous page</span>
                   <iconify-icon icon="material-symbols:chevron-left-rounded" width="20" height="20"></iconify-icon>
-                </button>
-                <button
+                </ui-button>
+                <ui-button
                   size="icon"
-                  class="next-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
+                  class="next-page flex items-center justify-center rounded text-white w-7 h-7 "
                   ?disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
                 >
                   <span class="sr-only">Go to next page</span>
                   <iconify-icon icon="material-symbols:chevron-right-rounded" width="20" height="20"></iconify-icon>
-                </button>
-                <button
+                </ui-button>
+                <ui-button
                   size="icon"
-                  class="last-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
+                  class="last-page flex items-center justify-center rounded text-white w-7 h-7 "
                   ?disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
                 >
                   <span class="sr-only">Go to last page</span>
                   <iconify-icon icon="material-symbols:keyboard-double-arrow-right-rounded" width="20" height="20"></iconify-icon>
-                </button>
+                </ui-button>
               </div>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 import "iconify-icon";
+import "@/components/ui/ui-link";
 
 /**
  * @element fo-uploaded
@@ -29,12 +30,12 @@ class FormUploaded extends HTMLElement {
             this.getAttribute("class")
           )}
         >
-          <a href=${this.getAttribute("fileurl")} target="_blank" class="line-clamp-1 text-blue-600 hover:text-blue-500">
+          <ui-link type="external" href=${this.getAttribute("fileurl")} target="_blank" class="line-clamp-1">
             ${this.getAttribute("filename") ?? this.getAttribute("fileurl")}
-          </a>
-          <a href=${this.getAttribute("fileurl")} target="_blank" class="flex items-center justify-center">
+          </ui-link>
+          <ui-link type="external" href=${this.getAttribute("fileurl")} target="_blank" class="flex items-center justify-center">
             <iconify-icon icon="iconamoon:attachment" height="16" class="text-gray-600 hover:text-gray-500"></iconify-icon>
-          </a>
+          </ui-link>
         </div>
       `
     );
