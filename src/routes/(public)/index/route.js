@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 
 export const MetaTitle = "Landing Page";
 export const MetaDescription = "Description of this page";

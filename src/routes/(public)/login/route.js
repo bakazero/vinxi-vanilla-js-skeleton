@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 import { redirect } from "@/libraries/client.router";
 import { setAuth } from "@/libraries/server.function";
 import { $auth } from "@/stores/auth";
@@ -19,12 +19,12 @@ export default async function Page() {
       <form id="login-form" class="my-4 space-y-4 max-w-xl">
         <div>
           <fo-label for="username" label="Username"></fo-label>
-          <fo-input name="username"></fo-input>
+          <fo-input name="username" value="waw"></fo-input>
           <fo-error name="username"></fo-error>
         </div>
         <div>
           <fo-label for="password" label="Password"></fo-label>
-          <fo-input name="password" type="password"></fo-input>
+          <fo-input name="password" type="password" value="waw"></fo-input>
           <fo-error name="password"></fo-error>
         </div>
         <div>
@@ -47,12 +47,12 @@ export const Script = async () => {
       nProgress.start();
       form.querySelectorAll("fo-input,ui-button").forEach((element) => element.setAttribute("disabled", ""));
 
-      await timeout(1000);
+      await timeout(500);
       const token = "mhwahahahaha";
       await setAuth(token);
       $auth.set({ token });
 
-      return redirect("/dashboard");
+      redirect("/dashboard");
     });
   }
 };

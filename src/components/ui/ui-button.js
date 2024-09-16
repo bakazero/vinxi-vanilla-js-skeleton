@@ -1,5 +1,4 @@
-import { html, render } from "lit-html";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
+import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -13,8 +12,7 @@ class UIButton extends HTMLElement {
   constructor() {
     super();
     this.component = null;
-    this.content = this.innerHTML;
-    this.innerHTML = "";
+    this.content = Array.from(this.childNodes);
   }
 
   connectedCallback() {
@@ -32,6 +30,7 @@ class UIButton extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <button
           class=${cn(
@@ -40,10 +39,9 @@ class UIButton extends HTMLElement {
             this.getAttribute("class")
           )}
         >
-          ${unsafeHTML(this.content)}
+          ${this.content}
         </button>
-      `,
-      this
+      `
     );
 
     this.component = this.querySelector("button");

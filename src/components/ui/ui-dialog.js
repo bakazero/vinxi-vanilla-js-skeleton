@@ -1,6 +1,5 @@
 import { cn } from "@/libraries/utilities";
-import { html, render } from "lit-html";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
+import { html, render } from "uhtml";
 import MicroModal from "micromodal";
 
 /**
@@ -12,8 +11,7 @@ import MicroModal from "micromodal";
 class UIDialog extends HTMLElement {
   constructor() {
     super();
-    this.content = this.innerHTML;
-    this.innerHTML = "";
+    this.content = Array.from(this.childNodes);
   }
 
   connectedCallback() {
@@ -24,6 +22,7 @@ class UIDialog extends HTMLElement {
     const id = this.getAttribute("name") || Date.now().toString();
 
     render(
+      document.body,
       html`
         <style>
           .ui-dialog {
@@ -53,11 +52,10 @@ class UIDialog extends HTMLElement {
             role="dialog"
             aria-modal="true"
           >
-            ${unsafeHTML(this.content)}
+            ${this.content}
           </div>
         </div>
-      `,
-      document.body
+      `
     );
 
     MicroModal.init({

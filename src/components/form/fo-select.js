@@ -1,7 +1,5 @@
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
+import { html, render } from "uhtml";
 import Choices from "choices.js";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 
 /**
  * @element fo-select
@@ -16,8 +14,6 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 class FormSelect extends HTMLElement {
   constructor() {
     super();
-    this.content = this.innerHTML;
-    this.innerHTML = "";
     this.component = null;
     this.choices = null;
   }
@@ -59,16 +55,12 @@ class FormSelect extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
-        <select
-          id=${ifDefined(this.getAttribute("name"))}
-          name=${ifDefined(this.getAttribute("name"))}
-          data-placeholder=${this.getAttribute("placeholder") ?? ""}
-        >
-          ${this.hasAttribute("clearable") ? html` <option value="_clear">Clear</option> ` : null} ${unsafeHTML(this.content)}
+        <select id=${this.getAttribute("name")} name=${this.getAttribute("name")} data-placeholder=${this.getAttribute("placeholder") ?? ""}>
+          ${this.hasAttribute("clearable") ? html` <option value="_clear">Clear</option> ` : null} ${Array.from(this.childNodes)}
         </select>
-      `,
-      this
+      `
     );
 
     this.component = this.querySelector("select");

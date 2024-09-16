@@ -2,7 +2,7 @@
 
 - [Vinxi](https://vinxi.vercel.app)
 - [Tailwind](https://tailwindcss.com)
-- [lit-html](https://lit.dev/docs/libraries/standalone-templates)
+- [uhtml](https://github.com/WebReflection/uhtml)
 
 ### VS Code
 
@@ -10,7 +10,7 @@
 
 - Prettier - Code formatter
 - Tailwind CSS Intellisense
-- lit-plugin
+- lit-html
 
 ##### Setting (JSON)
 

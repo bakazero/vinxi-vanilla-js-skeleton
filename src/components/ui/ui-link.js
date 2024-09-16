@@ -1,7 +1,5 @@
 import { cn } from "@/libraries/utilities";
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
+import { html, render } from "uhtml";
 
 /**
  * @element ui-link
@@ -14,8 +12,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 class UILink extends HTMLElement {
   constructor() {
     super();
-    this.content = this.innerHTML;
-    this.innerHTML = "";
+    this.content = Array.from(this.childNodes);
   }
 
   connectedCallback() {
@@ -24,16 +21,16 @@ class UILink extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <a
           class=${cn("text-blue-600 hover:text-blue-400", this.getAttribute("class"), this.getAttribute("type") === "spa" && "spa")}
           href=${this.getAttribute("href")}
-          target=${ifDefined(this.getAttribute("target"))}
+          target=${this.getAttribute("target")}
         >
-          ${unsafeHTML(this.content)}
+          ${this.content}
         </a>
-      `,
-      this
+      `
     );
   }
 }

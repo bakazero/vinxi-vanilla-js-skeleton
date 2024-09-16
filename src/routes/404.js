@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 import "@/components/ui/ui-link";
 
 export const MetaTitle = "Page Not Found";

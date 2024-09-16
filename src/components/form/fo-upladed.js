@@ -1,4 +1,4 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 import "iconify-icon";
 
@@ -20,6 +20,7 @@ class FormUploaded extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <div
           class=${cn(
@@ -35,8 +36,7 @@ class FormUploaded extends HTMLElement {
             <iconify-icon icon="iconamoon:attachment" height="16" class="text-gray-600 hover:text-gray-500"></iconify-icon>
           </a>
         </div>
-      `,
-      this
+      `
     );
   }
 }

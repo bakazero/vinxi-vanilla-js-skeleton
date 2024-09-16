@@ -1,5 +1,4 @@
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
+import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -48,17 +47,18 @@ class FormInput extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <input
-          id=${ifDefined(this.getAttribute("name"))}
-          name=${ifDefined(this.getAttribute("name"))}
-          value=${ifDefined(this.getAttribute("value"))}
-          min=${ifDefined(this.getAttribute("min"))}
-          max=${ifDefined(this.getAttribute("max"))}
-          step=${ifDefined(this.getAttribute("step") ? Number(this.getAttribute("step")) : undefined)}
-          placeholder=${ifDefined(this.getAttribute("placeholder"))}
-          .type=${this.getAttribute("type") ?? "text"}
-          .disabled=${this.hasAttribute("disabled")}
+          id=${this.getAttribute("name")}
+          name=${this.getAttribute("name")}
+          value=${this.getAttribute("value")}
+          min=${this.getAttribute("min")}
+          max=${this.getAttribute("max")}
+          step=${this.getAttribute("step") ? Number(this.getAttribute("step")) : undefined}
+          placeholder=${this.getAttribute("placeholder")}
+          type=${this.getAttribute("type") ?? "text"}
+          ?disabled=${this.hasAttribute("disabled")}
           class=${cn(
             "outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5",
             this.hasAttribute("disabled") && "cursor-not-allowed bg-gray-100",
@@ -67,8 +67,7 @@ class FormInput extends HTMLElement {
           )}
           autocomplete=${!this.hasAttribute("type") || this.getAttribute("type") === "text" ? "on" : "off"}
         />
-      `,
-      this
+      `
     );
   }
 }

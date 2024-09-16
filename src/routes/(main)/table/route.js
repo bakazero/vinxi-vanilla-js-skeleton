@@ -1,4 +1,4 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import { dummyPokemon } from "@/libraries/server.function";
 import { timeout } from "@/libraries/utilities";
 import "iconify-icon";
@@ -53,24 +53,26 @@ const getAndRender = async (page) => {
     const { data } = await dummyPokemon(page);
 
     render(
-      data.map(
-        (item) => html`
-          <tr>
-            <td class="text-center font-medium">${item.id}</td>
-            <td>
-              <div class="h-24 w-24 rounded-sm overflow-hidden mx-auto">
-                <img src=${item.image} class="h-full w-full object-cover" />
-              </div>
-            </td>
-            <td class="capitalize">${item.name}</td>
-            <td class="capitalize">${item.abilities.join(", ")}</td>
-            <td class="text-center hover:animate-pulse">
-              <iconify-icon icon="mdi:pokeball" height="24" class="text-blue-600"></iconify-icon>
-            </td>
-          </tr>
-        `
-      ),
-      tableData
+      tableData,
+      html`
+        ${data.map(
+          (item) => html`
+            <tr>
+              <td class="text-center font-medium">${item.id}</td>
+              <td>
+                <div class="h-24 w-24 rounded-sm overflow-hidden mx-auto">
+                  <img src=${item.image} class="h-full w-full object-cover" />
+                </div>
+              </td>
+              <td class="capitalize">${item.name}</td>
+              <td class="capitalize">${item.abilities.join(", ")}</td>
+              <td class="text-center hover:animate-pulse">
+                <iconify-icon icon="mdi:pokeball" height="24" class="text-blue-600"></iconify-icon>
+              </td>
+            </tr>
+          `
+        )}
+      `
     );
   }
 };

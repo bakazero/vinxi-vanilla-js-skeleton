@@ -1,6 +1,6 @@
 import fileRoutes from "vinxi/routes";
 import { toast, simpleHash } from "./utilities";
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import nprogress from "nprogress";
 
 export const handleRoute = async () => {
@@ -21,7 +21,7 @@ export const handleRoute = async () => {
       const layoutModule = await dynamicLoad(layoutComponent.component);
       await loadModule(layoutComponent, layoutModule);
     } else {
-      render(html``, document.getElementById("app-page"));
+      render(document.getElementById("app-page"), html``);
     }
 
     const routeModule = await dynamicLoad(routeComponent.component);
@@ -75,16 +75,6 @@ const findRoute = (path) => {
   return routes.filter((route) => !route.uri.includes("/layout")).find((route) => (route.uri || "/") === path);
 };
 
-/**
- * @param {HTMLElement} element
- */
-const addLinkListener = (element) => {
-  for (const link of element.getElementsByClassName("spa")) {
-    link.removeEventListener("click", route);
-    link.addEventListener("click", route);
-  }
-};
-
 const loadModule = async (component, module) => {
   const appElement = document.getElementById("app");
   const pageElement = document.getElementById("app-page");
@@ -96,7 +86,7 @@ const loadModule = async (component, module) => {
     setMetaDescription((await module.MetaDescription) ?? "");
     if (module.default) {
       nprogress.start();
-      render(await module.default(), appElement);
+      render(appElement, await module.default());
       addLinkListener(appElement);
       nprogress.done();
     }
@@ -111,7 +101,7 @@ const loadModule = async (component, module) => {
     if (module.default) {
       const template = await module.default();
       if (!template) throw "redirect";
-      render(template, appElement);
+      render(appElement, template);
       addLinkListener(appElement);
     }
     if (module.Script) await module.Script();
@@ -126,31 +116,17 @@ const loadModule = async (component, module) => {
   if (module.default) {
     nprogress.start();
     if (pageElement) {
-      render(await module.default(), pageElement);
+      render(pageElement, await module.default());
       addLinkListener(pageElement);
       pageElement.setAttribute("data-hash", component.hash);
     } else {
-      render(await module.default(), appElement);
+      render(appElement, await module.default());
       addLinkListener(appElement);
       appElement.setAttribute("data-hash", component.hash);
     }
     nprogress.done();
   }
   if (module.Script) await module.Script();
-};
-
-const setMetaDescription = (content) => {
-  if (!content) return;
-
-  let metaDescription = document.querySelector('meta[name="description"]');
-
-  if (!metaDescription) {
-    metaDescription = document.createElement("meta");
-    metaDescription.setAttribute("name", "description");
-    document.head.appendChild(metaDescription);
-  }
-
-  metaDescription.setAttribute("content", content);
 };
 
 const dynamicLoad = async (component) => {
@@ -169,4 +145,28 @@ const dynamicLoad = async (component) => {
   }
 
   return load;
+};
+
+/**
+ * @param {HTMLElement} element
+ */
+const addLinkListener = (element) => {
+  for (const link of element.getElementsByClassName("spa")) {
+    link.removeEventListener("click", route);
+    link.addEventListener("click", route);
+  }
+};
+
+const setMetaDescription = (content) => {
+  if (!content) return;
+
+  let metaDescription = document.querySelector('meta[name="description"]');
+
+  if (!metaDescription) {
+    metaDescription = document.createElement("meta");
+    metaDescription.setAttribute("name", "description");
+    document.head.appendChild(metaDescription);
+  }
+
+  metaDescription.setAttribute("content", content);
 };

@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 import "iconify-icon";
 import "@/components/ui/ui-link";
 

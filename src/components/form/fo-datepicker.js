@@ -1,6 +1,5 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import flatpickr from "flatpickr";
-import { ifDefined } from "lit-html/directives/if-defined.js";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -74,12 +73,13 @@ class FormDatepicker extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <div class="relative">
           <input
-            name=${ifDefined(this.getAttribute("name"))}
-            .disabled=${this.hasAttribute("disabled")}
-            value=${ifDefined(this.getAttribute("value"))}
+            name=${this.getAttribute("name")}
+            ?disabled=${this.hasAttribute("disabled")}
+            value=${this.getAttribute("value")}
             class=${cn(
               "outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5 pr-8",
               this.getAttribute("class")
@@ -87,8 +87,7 @@ class FormDatepicker extends HTMLElement {
           />
           <iconify-icon icon="lucide:calendar" class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-600" height="16"></iconify-icon>
         </div>
-      `,
-      this
+      `
     );
 
     this.hiddenComponent = this.querySelector("input");

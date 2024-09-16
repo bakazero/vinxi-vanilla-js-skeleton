@@ -1,4 +1,4 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -20,15 +20,15 @@ class FormLabel extends HTMLElement {
   renderTemplate() {
     if (this.hasAttribute("for")) {
       render(
+        this,
         html`
           <label for=${this.getAttribute("for")} class=${cn("block mb-1 text-sm font-medium text-gray-900", this.getAttribute("class"))}>
             ${this.getAttribute("label")}
           </label>
-        `,
-        this
+        `
       );
     } else {
-      render(html` <div class=${cn("block mb-1 text-sm font-medium text-gray-900", this.getAttribute("class"))}>${this.getAttribute("label")}</div> `, this);
+      render(this, html` <div class=${cn("block mb-1 text-sm font-medium text-gray-900", this.getAttribute("class"))}>${this.getAttribute("label")}</div> `);
     }
   }
 }

@@ -1,6 +1,5 @@
 import { cn } from "@/libraries/utilities";
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
+import { html, render } from "uhtml";
 import "iconify-icon";
 import "./fo-label";
 
@@ -36,14 +35,15 @@ class FormRadio extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <div class="relative flex items-center gap-1">
           <input
             type="radio"
-            name=${ifDefined(this.getAttribute("name"))}
-            value=${ifDefined(this.getAttribute("value"))}
-            .checked=${this.hasAttribute("checked")}
-            .disabled=${this.hasAttribute("disabled")}
+            name=${this.getAttribute("name")}
+            value=${this.getAttribute("value")}
+            ?checked=${this.hasAttribute("checked")}
+            ?disabled=${this.hasAttribute("disabled")}
             class="sr-only"
           />
           <div
@@ -60,8 +60,7 @@ class FormRadio extends HTMLElement {
           </div>
           ${this.hasAttribute("label") ? html`<div class="cursor-default text-sm font-medium text-gray-900">${this.getAttribute("label")}</div>` : null}
         </div>
-      `,
-      this
+      `
     );
 
     this.querySelector(".relative").addEventListener(

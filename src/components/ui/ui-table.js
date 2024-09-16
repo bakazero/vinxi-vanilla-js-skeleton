@@ -1,6 +1,5 @@
 import { cn } from "@/libraries/utilities";
-import { html, render } from "lit-html";
-import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
+import { html, render } from "uhtml";
 
 /**
  * @element ui-table
@@ -10,8 +9,7 @@ import { unsafeHTML } from "lit-html/directives/unsafe-html.js";
 class UITable extends HTMLElement {
   constructor() {
     super();
-    this.content = this.innerHTML;
-    this.innerHTML = "";
+    this.content = Array.from(this.childNodes);
   }
 
   connectedCallback() {
@@ -20,6 +18,7 @@ class UITable extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <div class="relative overflow-hidden">
           <div
@@ -33,11 +32,10 @@ class UITable extends HTMLElement {
               this.getAttribute("class")
             )}
           >
-            ${unsafeHTML(this.content)}
+            ${this.content}
           </div>
         </div>
-      `,
-      this
+      `
     );
   }
 }

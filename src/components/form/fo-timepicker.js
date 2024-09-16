@@ -1,6 +1,5 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import flatpickr from "flatpickr";
-import { ifDefined } from "lit-html/directives/if-defined.js";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -56,14 +55,15 @@ class FormTimepicker extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <div class="relative">
           <input
-            id=${ifDefined(this.getAttribute("name"))}
-            name=${ifDefined(this.getAttribute("name"))}
-            placeholder=${ifDefined(this.getAttribute("placeholder"))}
-            .disabled=${this.hasAttribute("disabled")}
-            value=${ifDefined(this.getAttribute("value"))}
+            id=${this.getAttribute("name")}
+            name=${this.getAttribute("name")}
+            placeholder=${this.getAttribute("placeholder")}
+            ?disabled=${this.hasAttribute("disabled")}
+            value=${this.getAttribute("value")}
             class=${cn(
               "flatpickr-input outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5 pr-8",
               this.getAttribute("class")
@@ -71,8 +71,7 @@ class FormTimepicker extends HTMLElement {
           />
           <iconify-icon icon="lucide:clock" class="absolute top-1/2 right-3 -translate-y-1/2 text-gray-600" height="16"></iconify-icon>
         </div>
-      `,
-      this
+      `
     );
 
     this.component = this.querySelector("input");

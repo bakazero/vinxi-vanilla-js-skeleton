@@ -1,5 +1,4 @@
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
+import { html, render } from "uhtml";
 import { cn } from "@/libraries/utilities";
 
 /**
@@ -44,13 +43,14 @@ class FormTextarea extends HTMLElement {
 
   renderTemplate() {
     render(
+      this,
       html`
         <textarea
-          id=${ifDefined(this.getAttribute("name"))}
-          name=${ifDefined(this.getAttribute("name"))}
-          placeholder=${ifDefined(this.getAttribute("placeholder"))}
-          .value=${this.getAttribute("value")}
-          .disabled=${this.hasAttribute("disabled")}
+          id=${this.getAttribute("name")}
+          name=${this.getAttribute("name")}
+          placeholder=${this.getAttribute("placeholder")}
+          ?value=${this.getAttribute("value")}
+          ?disabled=${this.hasAttribute("disabled")}
           class=${cn(
             "outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-400 focus:border-gray-400 block w-full p-2.5",
             this.hasAttribute("disabled") && "cursor-not-allowed bg-gray-100",
@@ -58,8 +58,7 @@ class FormTextarea extends HTMLElement {
             this.getAttribute("class")
           )}
         ></textarea>
-      `,
-      this
+      `
     );
   }
 }

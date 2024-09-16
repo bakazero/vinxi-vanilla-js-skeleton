@@ -1,4 +1,4 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 
 /**
  * @element ch-pie
@@ -15,7 +15,7 @@ class ChartPie extends HTMLElement {
   }
 
   renderTemplate() {
-    render(html``, this);
+    render(this, html``);
   }
 }
 

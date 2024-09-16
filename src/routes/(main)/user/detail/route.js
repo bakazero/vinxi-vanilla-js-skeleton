@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 
 export const MetaTitle = "User Detail";
 

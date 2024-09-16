@@ -1,6 +1,6 @@
 import { redirect } from "@/libraries/client.router";
 import { $auth } from "@/stores/auth";
-import { html } from "lit-html";
+import { html } from "uhtml";
 import "@/components/ui/ui-link";
 
 export default async function Layout() {

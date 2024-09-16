@@ -1,6 +1,6 @@
 import EditorJS from "@editorjs/editorjs";
 import NestedList from "@editorjs/nested-list";
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 
 /**
  * @element fo-editor
@@ -29,7 +29,7 @@ class FormEditor extends HTMLElement {
   }
 
   renderTemplate() {
-    render(html`<div id="editorjs" class="bg-gray-50 min-h-[400px] border border-gray-300 text-gray-900 text-sm overflow-hidden rounded p-2.5"></div>`, this);
+    render(this, html`<div id="editorjs" class="bg-gray-50 min-h-[400px] border border-gray-300 text-gray-900 text-sm overflow-hidden rounded p-2.5"></div>`);
 
     this.component = this.querySelector("#editorjs");
     if (this.component instanceof HTMLElement) {

@@ -1,4 +1,4 @@
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 
 /**
  * @element ui-badge
@@ -15,7 +15,7 @@ class UIBadge extends HTMLElement {
   }
 
   renderTemplate() {
-    render(html``, this);
+    render(this, html``);
   }
 }
 

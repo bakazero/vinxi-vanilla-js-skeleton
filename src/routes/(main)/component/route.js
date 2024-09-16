@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 import "@/components/ui/ui-button";
 import "@/components/ui/ui-dialog";
 import "@/components/ui/ui-popover";

@@ -1,5 +1,5 @@
 import { toast } from "@/libraries/utilities";
-import { html } from "lit-html";
+import { html } from "uhtml";
 
 export const MetaTitle = "Dashboard";
 

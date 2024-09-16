@@ -1,7 +1,6 @@
 import { create, registerPlugin } from "filepond";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-import { html, render } from "lit-html";
-import { ifDefined } from "lit-html/directives/if-defined.js";
+import { html, render } from "uhtml";
 
 registerPlugin(FilePondPluginFileValidateType);
 
@@ -56,7 +55,7 @@ class FormFile extends HTMLElement {
   }
 
   renderTemplate() {
-    render(html` <input type="file" accept=${ifDefined(this.getAttribute("accept"))} /> `, this);
+    render(this, html` <input type="file" accept=${this.getAttribute("accept")} /> `);
 
     this.filepond = create(this.querySelector("input"), {
       name: this.getAttribute("name"),

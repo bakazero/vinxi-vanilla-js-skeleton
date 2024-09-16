@@ -1,4 +1,4 @@
-import { html } from "lit-html";
+import { html } from "uhtml";
 import { toast } from "@/libraries/utilities";
 import "@/components/ui/ui-button";
 import "@/components/form/fo-input";

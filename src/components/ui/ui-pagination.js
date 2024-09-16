@@ -1,5 +1,5 @@
 import { cn, toMonetary } from "@/libraries/utilities";
-import { html, render } from "lit-html";
+import { html, render } from "uhtml";
 import "iconify-icon";
 
 /**
@@ -88,6 +88,7 @@ class UIPagination extends HTMLElement {
     const disabled = this.hasAttribute("disabled");
 
     render(
+      this,
       html`
         <div class=${cn("pagination-wrapper mx-0 flex items-center justify-between gap-2 text-sm text-muted-foreground", this.getAttribute("class"))}>
           <div class="truncate">Total: <strong>${toMonetary(count)}</strong> items</div>
@@ -100,7 +101,7 @@ class UIPagination extends HTMLElement {
                 <button
                   size="icon"
                   class="first-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  .disabled=${page === 1 || disabled}
+                  ?disabled=${page === 1 || disabled}
                 >
                   <span class="sr-only">Go to first page</span>
                   <iconify-icon icon="material-symbols:keyboard-double-arrow-left-rounded" width="20" height="20"></iconify-icon>
@@ -108,7 +109,7 @@ class UIPagination extends HTMLElement {
                 <button
                   size="icon"
                   class="prev-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  .disabled=${page === 1 || disabled}
+                  ?disabled=${page === 1 || disabled}
                 >
                   <span class="sr-only">Go to previous page</span>
                   <iconify-icon icon="material-symbols:chevron-left-rounded" width="20" height="20"></iconify-icon>
@@ -116,7 +117,7 @@ class UIPagination extends HTMLElement {
                 <button
                   size="icon"
                   class="next-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  .disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
+                  ?disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
                 >
                   <span class="sr-only">Go to next page</span>
                   <iconify-icon icon="material-symbols:chevron-right-rounded" width="20" height="20"></iconify-icon>
@@ -124,7 +125,7 @@ class UIPagination extends HTMLElement {
                 <button
                   size="icon"
                   class="last-page flex disabled:opacity-60 items-center justify-center rounded text-white w-7 h-7 bg-blue-700/90 hover:bg-blue-700/80"
-                  .disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
+                  ?disabled=${count / limit === 0 || Math.ceil(count / limit) === (page ?? 1) || disabled}
                 >
                   <span class="sr-only">Go to last page</span>
                   <iconify-icon icon="material-symbols:keyboard-double-arrow-right-rounded" width="20" height="20"></iconify-icon>
@@ -133,8 +134,7 @@ class UIPagination extends HTMLElement {
             </div>
           </div>
         </div>
-      `,
-      this
+      `
     );
 
     this.component = this.querySelector(".pagination-wrapper");
