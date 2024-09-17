@@ -3,6 +3,7 @@
 - [Vinxi](https://vinxi.vercel.app)
 - [Tailwind](https://tailwindcss.com)
 - [uhtml](https://github.com/WebReflection/uhtml)
+- [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_components)
 
 ### VS Code
 
