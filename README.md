@@ -22,8 +22,6 @@
 
 ## Development
 
-<!-- Copy `.env` file from `/deploy/overlays/dev` to the `root project` -->
-
 Install dependencies:
 
 ```sh
